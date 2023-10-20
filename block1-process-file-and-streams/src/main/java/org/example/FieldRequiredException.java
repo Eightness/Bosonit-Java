@@ -1,5 +1,5 @@
 /**
- *
+ * Class FieldRequiredException - block1-process-file-and-streams
  * @author Albert Lozano Blasco
  * @version 1.0
  */
@@ -15,7 +15,7 @@ public class FieldRequiredException extends Exception {
     /**
      * Constructs a new FieldRequiredException with the specified detail message.
      *
-     * @param fieldName field Name that is required.
+     * @param fieldName field Name that is required
      */
     public FieldRequiredException(String fieldName) {
         super("Field " + fieldName + " is required.");

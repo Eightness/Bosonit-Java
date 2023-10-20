@@ -30,8 +30,10 @@ public class Main {
             personList = personReader.readPersonsFromCSV(relativePath);
         } catch (IOException e) {
             System.err.println("An error occurred while reading the file. Details: " + e.getMessage());
+            e.printStackTrace();
         }
 
+        //Output
         for (Person person : personList) {
             System.out.println(person);
         }

@@ -1,3 +1,9 @@
+/**
+ * Class PersonReader - block1-process-file-and-streams
+ * @author Albert Lozano Blasco
+ * @version 1.0
+ */
+
 package org.example;
 
 import java.io.BufferedReader;
@@ -45,7 +51,7 @@ public class PersonReader {
      * @throws InvalidLineFormatException if the CSV line has an invalid format
      */
     private Person parsePersonFromCSV(String line) throws InvalidLineFormatException {
-        String[] fields = line.split(":", -1);
+        String[] fields = line.split(":", -1);  //The limit parameter controls the number of times the pattern is applied and therefore affects the length of the resulting array.
 
         if (fields.length != 3) {
             throw new InvalidLineFormatException("Expected 2 delimiters ':' but found " + (fields.length - 1) + ".");
