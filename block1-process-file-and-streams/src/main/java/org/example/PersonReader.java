@@ -28,7 +28,8 @@ public class PersonReader {
                     Person person = parsePersonFromCSV(line);
                     personList.add(person);
                 } catch (InvalidLineFormatException e) {
-                    System.err.println("Error processing line: " + line + ". Cause: " + e.getMessage());
+                    System.err.println("Error processing line: '" + line + "'.");
+                    e.printStackTrace();
                 }
             }
         }
@@ -44,45 +45,21 @@ public class PersonReader {
      * @throws InvalidLineFormatException if the CSV line has an invalid format
      */
     private Person parsePersonFromCSV(String line) throws InvalidLineFormatException {
-        String[] fields = line.split(":");
+        String[] fields = line.split(":", -1);
 
-        if (fields.length == 0) {
-            throw new InvalidLineFormatException("Invalid line format: 0 fields detected.");
+        if (fields.length != 3) {
+            throw new InvalidLineFormatException("Expected 2 delimiters ':' but found " + (fields.length - 1) + ".");
         }
 
-        int delimiterCount = line.length() - line.replace(":", "").length();
-
-        if (delimiterCount != 2) {
-            throw new InvalidLineFormatException("Invalid line format: Expected 2 delimiters ':' but found " + delimiterCount + ".");
+        try {
+            String name = fields[0];
+            String town = fields[1];
+            String age = fields[2];
+            return new Person(name, town, age);
+        } catch (FieldRequiredException e) {
+            throw new InvalidLineFormatException(e.getMessage());
         }
 
-        if (fields[0].trim().isEmpty()) {
-            throw new InvalidLineFormatException("Name is required.");
-        }
-
-        switch (fields.length) {
-            case 0 -> throw new InvalidLineFormatException("Name is required.");
-            case 1 -> {
-                return new Person(fields[0], "Blank", "0");
-            }
-            case 2 -> {
-                if (fields[1].isEmpty()) {
-                    return new Person(fields[0], "Blank", "0");
-                } else {
-                    return new Person(fields[0], fields[1], "0");
-                }
-            }
-            case 3 -> {
-                if (fields[2].isEmpty()) {
-                    return new Person(fields[0], fields[1], "0");
-                } else if (fields[2].equals("0")) {
-                    return new Person(fields[0], fields[1], "Unknown");
-                } else {
-                    return new Person(fields[0], fields[1], fields[2]);
-                }
-            }
-            default -> throw new InvalidLineFormatException("Invalid line format: Expected 2 delimiters ':' but found " + delimiterCount + ".");
-        }
     }
 
 }

@@ -15,9 +15,9 @@ public class InvalidLineFormatException extends Exception {
     /**
      * Constructs a new InvalidLineFormatException with the specified detail message.
      *
-     * @param message the detail message that describes the reason for the exception
+     * @param reason the detail message that describes the reason for the exception
      */
-    public InvalidLineFormatException(String message) {
-        super(message);
+    public InvalidLineFormatException(String reason) {
+        super("Invalid line format: " + reason);
     }
 }

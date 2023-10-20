@@ -11,9 +11,9 @@ package org.example;
  */
 public class Person {
     // Class attributes
-    private String name;  // The name of the person
-    private String town;  // The town of the person
-    private String age;   // The age of the person
+    private String name;    // The name of the person
+    private String town;    // The town of the person
+    private String age;     // The age of the person
 
     /**
      * Default constructor that initializes an instance of Person with no values.
@@ -27,10 +27,10 @@ public class Person {
      * @param town The town of the person.
      * @param age  The age of the person.
      */
-    public Person(String name, String town, String age) {
-        this.name = name;
-        this.town = town;
-        this.age = age;
+    public Person(String name, String town, String age) throws FieldRequiredException{
+        setName(name);
+        setTown(town);
+        setAge(age);
     }
 
     // Setters and Getters
@@ -40,7 +40,8 @@ public class Person {
      *
      * @param name The name of the person.
      */
-    public void setName(String name) {
+    public void setName(String name) throws FieldRequiredException {
+        if (name.isBlank()) throw new FieldRequiredException("Name");
         this.name = name;
     }
 
@@ -50,6 +51,10 @@ public class Person {
      * @param town The town of the person.
      */
     public void setTown(String town) {
+        if (town.isBlank()) {
+            this.town = "Unknown";
+            return;
+        }
         this.town = town;
     }
 
@@ -59,6 +64,10 @@ public class Person {
      * @param age The age of the person.
      */
     public void setAge(String age) {
+        if (age.isBlank() || age.equals("0")) {
+            this.age = "Unknown";
+            return;
+        }
         this.age = age;
     }
 
