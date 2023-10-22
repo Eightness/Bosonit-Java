@@ -15,7 +15,7 @@ public class FieldRequiredException extends Exception {
     /**
      * Constructs a new FieldRequiredException with the specified detail message.
      *
-     * @param fieldName field Name that is required
+     * @param fieldName Field Name that is required.
      */
     public FieldRequiredException(String fieldName) {
         super("Field " + fieldName + " is required.");

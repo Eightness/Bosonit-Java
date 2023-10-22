@@ -20,9 +20,9 @@ public class PersonReader {
     /**
      * Reads a CSV file containing person data and returns a list of persons.
      *
-     * @param filePath the path to the CSV file to read
-     * @return a list of Person objects read from the CSV file
-     * @throws IOException if there is an issue reading the file
+     * @param filePath The path to the CSV file to read.
+     * @return A list of Person objects read from the CSV file.
+     * @throws IOException If there is an issue reading the file.
      */
     public List<Person> readPersonsFromCSV(String filePath) throws IOException {
         List<Person> personList = new ArrayList<>();
@@ -46,9 +46,9 @@ public class PersonReader {
     /**
      * Parses a single line from the CSV file and creates a Person object.
      *
-     * @param line a line from the CSV file
-     * @return a Person object representing the data in the CSV line
-     * @throws InvalidLineFormatException if the CSV line has an invalid format
+     * @param line A line from the CSV file.
+     * @return A Person object representing the data in the CSV line.
+     * @throws InvalidLineFormatException If the CSV line has an invalid format.
      */
     private Person parsePersonFromCSV(String line) throws InvalidLineFormatException {
         String[] fields = line.split(":", -1);  //The limit parameter controls the number of times the pattern is applied and therefore affects the length of the resulting array.

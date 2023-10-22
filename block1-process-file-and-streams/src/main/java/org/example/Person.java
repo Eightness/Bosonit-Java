@@ -64,7 +64,7 @@ public class Person {
      * @param age The age of the person.
      */
     public void setAge(String age) {
-        if (age.isBlank() || age.equals("0")) {
+        if (!validateAge(age)) {
             this.age = "Unknown";
             return;
         }
@@ -107,5 +107,31 @@ public class Person {
      */
     public String toString() {
         return "Name: " + this.name + ". Town: " + this.town + ". Age: " + this.age + ".";
+    }
+
+    /**
+     * Method to see if the age is numeric or not.
+     *
+     * @param age person's age collected in the CSV.
+     */
+    private boolean isNumeric(String age) {
+        try {
+            Integer.parseInt(age);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Method to validate person's age.
+     *
+     * @param age person's age collected in the CSV.
+     */
+    private boolean validateAge(String age) {
+        if (!isNumeric(age)) return false;
+        if (age.isBlank()) return false;
+        if (age.equals("0")) return false;
+        return true;
     }
 }
