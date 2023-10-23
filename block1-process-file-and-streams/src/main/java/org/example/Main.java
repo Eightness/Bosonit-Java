@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Main class of the program.
@@ -26,7 +25,7 @@ public class Main {
         PersonReader personReader = new PersonReader();
 
         List<Person> personList = new ArrayList<>();
-        String relativePath = "res/people.csv";
+        String relativePath = "res/people.csv"; //Change if needed
 
         //Getting the list from the CSV file.
         try {
