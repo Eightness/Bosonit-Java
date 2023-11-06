@@ -1,0 +1,6 @@
+18:53:03.664 [main] INFO  c.b.a.l.b.Block5LoggingApplication - Starting Block5LoggingApplication using Java 21.0.1 with PID 7768 (C:\Users\albert.lozano\Desktop\GitHub\Bosonit-Java\block5-logging\target\classes started by albert.lozano in C:\Users\albert.lozano\Desktop\GitHub\Bosonit-Java\block5-logging)
+18:53:03.666 [main] INFO  c.b.a.l.b.Block5LoggingApplication - No active profile set, falling back to 1 default profile: "default"
+18:53:04.220 [main] INFO  c.b.a.l.b.Block5LoggingApplication - Started Block5LoggingApplication in 0.963 seconds (process running for 1.248)
+18:53:04.223 [main] ERROR c.b.a.l.b.Block5LoggingApplication - Este es un registro de error.
+18:53:04.226 [main] WARN  c.b.a.l.b.Block5LoggingApplication - Este es un registro de advertencia.
+18:53:04.227 [main] INFO  c.b.a.l.b.Block5LoggingApplication - Este es un registro de información.
