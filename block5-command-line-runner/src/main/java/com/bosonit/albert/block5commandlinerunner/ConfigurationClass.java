@@ -40,7 +40,7 @@ public class ConfigurationClass {
         return args -> {
             String param1 = "Soy la tercera clase.";
             System.out.println(param1);
-
+            //Second part of the exercise:
             if (args.length >= 2) {
                 String param2 = args[0];
                 String param3 = args[1];
