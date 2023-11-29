@@ -7,13 +7,13 @@ package com.bosonit.albert.lozano.block6personcontrollers.controller;
 
 import com.bosonit.albert.lozano.block6personcontrollers.exceptions.NotCreatedPersonException;
 import com.bosonit.albert.lozano.block6personcontrollers.model.City;
+import com.bosonit.albert.lozano.block6personcontrollers.service.CityService;
 import com.bosonit.albert.lozano.block6personcontrollers.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class Controller2. Second controller. Will manage object Person.
@@ -21,13 +21,14 @@ import java.util.ArrayList;
 @RestController //Indicates that this class' methods will be receiving RESTful requests.
 @RequestMapping("/controller2") //Defining class level route.
 public class Controller2 {
-
-    //Instance of PersonService and Controller1.
+    //Attributes.
     private final PersonService personService;
+    private final CityService cityService;
 
     @Autowired  //Dependencies injection.
-    public Controller2(PersonService personService) {
+    public Controller2(PersonService personService, CityService cityService) {
         this.personService = personService;
+        this.cityService = cityService;
     }
 
     /**
@@ -48,8 +49,8 @@ public class Controller2 {
      * @return current existing cities.
      */
     @GetMapping("/getCities")
-    public ArrayList<City> getCities() {
-        return new ArrayList<>();
+    public List<City> getCities() {
+        return cityService.getCities();
     }
 
     //Adding an exception handler.

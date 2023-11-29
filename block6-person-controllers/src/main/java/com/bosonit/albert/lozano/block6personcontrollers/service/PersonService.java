@@ -10,13 +10,12 @@ import com.bosonit.albert.lozano.block6personcontrollers.model.Person;
 import org.springframework.stereotype.Service;
 
 /**
- * Class PersonService. Serves to create a Person.
+ * Class PersonService. Contains all business logic methods associated with a person.
  */
 @Service    //Define this class as a service. Business logic.
 public class PersonService implements PersonServiceInterface{
     //Attributes.
     private Person person;
-
 
     /**
      * Method createPerson.
@@ -31,6 +30,10 @@ public class PersonService implements PersonServiceInterface{
         return this.person;
     }
 
+    /**
+     * Method getPerson.
+     * @return the current added person.
+     */
     @Override
     public Person getPerson() {
         //Verifies if person is created before returning.

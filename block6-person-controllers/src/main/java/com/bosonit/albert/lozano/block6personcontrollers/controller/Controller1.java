@@ -5,7 +5,9 @@
 
 package com.bosonit.albert.lozano.block6personcontrollers.controller;
 
+import com.bosonit.albert.lozano.block6personcontrollers.model.City;
 import com.bosonit.albert.lozano.block6personcontrollers.model.Person;
+import com.bosonit.albert.lozano.block6personcontrollers.service.CityService;
 import com.bosonit.albert.lozano.block6personcontrollers.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,13 +18,14 @@ import org.springframework.web.bind.annotation.*;
 @RestController //Indicates that this class' methods will be receiving RESTful requests.
 @RequestMapping("/controller1") //Defining class' level route.
 public class Controller1 {
-
-    //Instance of PersonService.
+    //Attributes.
     private final PersonService personService;
+    private final CityService cityService;
 
     @Autowired  //Dependencies injection.
-    public Controller1(PersonService personService) {
+    public Controller1(PersonService personService, CityService cityService) {
         this.personService = personService;
+        this.cityService = cityService;
     }
 
     /**
@@ -41,10 +44,11 @@ public class Controller1 {
     }
 
     /**
-     * Method addCity. Post request.
+     * Method addCity. Post request. Adds a city
+     * @param city requested city in http body.
      */
     @PostMapping("/addCity")
-    public void addCity() {
-        //Add a city to the list of cities.
+    public void addCity(@RequestBody City city) {
+        cityService.addCity(city);
     }
 }
