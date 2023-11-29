@@ -7,8 +7,8 @@ package com.bosonit.albert.lozano.block6personcontrollers.controller;
 
 import com.bosonit.albert.lozano.block6personcontrollers.exceptions.NotCreatedPersonException;
 import com.bosonit.albert.lozano.block6personcontrollers.model.City;
-import com.bosonit.albert.lozano.block6personcontrollers.service.CityService;
-import com.bosonit.albert.lozano.block6personcontrollers.service.PersonService;
+import com.bosonit.albert.lozano.block6personcontrollers.service.CityServiceInterface;
+import com.bosonit.albert.lozano.block6personcontrollers.service.PersonServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,14 +22,9 @@ import java.util.List;
 @RequestMapping("/controller2") //Defining class level route.
 public class Controller2 {
     //Attributes.
-    private final PersonService personService;
-    private final CityService cityService;
-
     @Autowired  //Dependencies injection.
-    public Controller2(PersonService personService, CityService cityService) {
-        this.personService = personService;
-        this.cityService = cityService;
-    }
+    private PersonServiceInterface personServiceInterface;
+    private CityServiceInterface cityServiceInterface;
 
     /**
      * Method getPerson. Get request.
@@ -38,7 +33,7 @@ public class Controller2 {
     @GetMapping("/getPerson")
     public ResponseEntity<?> getPerson() {
         try {
-            return ResponseEntity.ok(personService.getPerson());
+            return ResponseEntity.ok(personServiceInterface.getPerson());
         } catch (NotCreatedPersonException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
@@ -50,7 +45,7 @@ public class Controller2 {
      */
     @GetMapping("/getCities")
     public List<City> getCities() {
-        return cityService.getCities();
+        return cityServiceInterface.getCities();
     }
 
     //Adding an exception handler.

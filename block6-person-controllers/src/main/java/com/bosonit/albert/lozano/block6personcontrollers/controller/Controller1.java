@@ -7,8 +7,8 @@ package com.bosonit.albert.lozano.block6personcontrollers.controller;
 
 import com.bosonit.albert.lozano.block6personcontrollers.model.City;
 import com.bosonit.albert.lozano.block6personcontrollers.model.Person;
-import com.bosonit.albert.lozano.block6personcontrollers.service.CityService;
-import com.bosonit.albert.lozano.block6personcontrollers.service.PersonService;
+import com.bosonit.albert.lozano.block6personcontrollers.service.CityServiceInterface;
+import com.bosonit.albert.lozano.block6personcontrollers.service.PersonServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,14 +19,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/controller1") //Defining class' level route.
 public class Controller1 {
     //Attributes.
-    private final PersonService personService;
-    private final CityService cityService;
-
     @Autowired  //Dependencies injection.
-    public Controller1(PersonService personService, CityService cityService) {
-        this.personService = personService;
-        this.cityService = cityService;
-    }
+    private PersonServiceInterface personServiceInterface;
+    private CityServiceInterface cityServiceInterface;
 
     /**
      * Method addPerson. Get request.
@@ -35,12 +30,12 @@ public class Controller1 {
      * @param age new person's current age.
      * @return new object Person.
      */
-    @GetMapping("/addPerson")
+    @GetMapping("/addPerson/{name}/town/{town}/age/{age}")
     public Person addPerson(
-            @RequestHeader String name,
-            @RequestHeader String town,
-            @RequestHeader int age) {
-        return personService.createPerson(name, town, age); //Calling PersonService's createPerson method to return a Person.
+            @PathVariable(name = "name") String name,
+            @PathVariable(name = "town") String town,
+            @PathVariable(name = "age") int age) {
+        return personServiceInterface.createPerson(name, town, age); //Calling PersonService's createPerson method to return a Person.
     }
 
     /**
@@ -49,6 +44,6 @@ public class Controller1 {
      */
     @PostMapping("/addCity")
     public void addCity(@RequestBody City city) {
-        cityService.addCity(city);
+        cityServiceInterface.addCity(city);
     }
 }
