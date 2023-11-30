@@ -8,9 +8,9 @@ package com.bosonit.albert.lozano.block6personcontrollers.exceptions;
 /**
  * Class InvalidHeaderException. Custom Exception.
  */
-public class InvalidHeadersException extends RuntimeException {
+public class InvalidVariablesException extends RuntimeException {
 
-    public InvalidHeadersException(String message) {
+    public InvalidVariablesException(String message) {
         super(message);
     }
 }

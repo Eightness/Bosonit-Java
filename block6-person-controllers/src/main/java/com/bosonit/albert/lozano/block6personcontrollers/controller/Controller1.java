@@ -5,11 +5,15 @@
 
 package com.bosonit.albert.lozano.block6personcontrollers.controller;
 
+import com.bosonit.albert.lozano.block6personcontrollers.exceptions.InvalidCityException;
+import com.bosonit.albert.lozano.block6personcontrollers.exceptions.InvalidVariablesException;
 import com.bosonit.albert.lozano.block6personcontrollers.model.City;
 import com.bosonit.albert.lozano.block6personcontrollers.model.Person;
 import com.bosonit.albert.lozano.block6personcontrollers.service.CityServiceInterface;
 import com.bosonit.albert.lozano.block6personcontrollers.service.PersonServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -20,8 +24,17 @@ import org.springframework.web.bind.annotation.*;
 public class Controller1 {
     //Attributes.
     @Autowired  //Dependencies injection.
-    private PersonServiceInterface personServiceInterface;
-    private CityServiceInterface cityServiceInterface;
+    private final PersonServiceInterface personServiceInterface;
+    private final CityServiceInterface cityServiceInterface;
+
+    @Autowired  //Dependencies injection.
+    public Controller1(
+        PersonServiceInterface personServiceInterface,
+        CityServiceInterface cityServiceInterface
+    ) {
+        this.personServiceInterface = personServiceInterface;
+        this.cityServiceInterface = cityServiceInterface;
+    }
 
     /**
      * Method addPerson. Get request.
@@ -30,12 +43,12 @@ public class Controller1 {
      * @param age new person's current age.
      * @return new object Person.
      */
-    @GetMapping("/addPerson/{name}/town/{town}/age/{age}")
+    @GetMapping("/addPerson/name/{name}/town/{town}/age/{age}")
     public Person addPerson(
             @PathVariable(name = "name") String name,
             @PathVariable(name = "town") String town,
             @PathVariable(name = "age") int age) {
-        return personServiceInterface.createPerson(name, town, age); //Calling PersonService's createPerson method to return a Person.
+        return personServiceInterface.createPerson(name, town, age);
     }
 
     /**
@@ -45,5 +58,17 @@ public class Controller1 {
     @PostMapping("/addCity")
     public void addCity(@RequestBody City city) {
         cityServiceInterface.addCity(city);
+    }
+
+    //Adding an exception handler for InvalidCityException.
+    @ExceptionHandler(InvalidCityException.class)
+    public ResponseEntity<String> handleInvalidCityException(InvalidCityException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    }
+
+    //Adding an exception handler for InvalidHeadersException.
+    @ExceptionHandler(InvalidVariablesException.class)
+    public ResponseEntity<String> handleInvalidHeaderException(InvalidVariablesException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 }

@@ -5,6 +5,7 @@
 
 package com.bosonit.albert.lozano.block6personcontrollers.service;
 
+import com.bosonit.albert.lozano.block6personcontrollers.exceptions.InvalidVariablesException;
 import com.bosonit.albert.lozano.block6personcontrollers.exceptions.NotCreatedPersonException;
 import com.bosonit.albert.lozano.block6personcontrollers.model.Person;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,9 @@ public class PersonService implements PersonServiceInterface{
      */
     @Override
     public Person createPerson(String name, String town, int age) {
+        if (name.isEmpty() || town.isEmpty() || age == 0) {
+            throw new InvalidVariablesException("Something failed creating the person.");
+        }
         this.person = new Person(name, town, age);
         return this.person;
     }

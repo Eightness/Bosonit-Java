@@ -5,6 +5,8 @@
 
 package com.bosonit.albert.lozano.block6personcontrollers.service;
 
+import com.bosonit.albert.lozano.block6personcontrollers.exceptions.EmptyCityListException;
+import com.bosonit.albert.lozano.block6personcontrollers.exceptions.InvalidCityException;
 import com.bosonit.albert.lozano.block6personcontrollers.model.City;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,9 @@ public class CityService implements CityServiceInterface {
      */
     @Override
     public void addCity(City city) {
+        if (city == null) {
+            throw new InvalidCityException("Invalid city. Not added.");
+        }
         this.cities.add(city);
     }
 
@@ -34,6 +39,9 @@ public class CityService implements CityServiceInterface {
      */
     @Override
     public List<City> getCities() {
+        if (this.cities.isEmpty()) {
+            throw new EmptyCityListException("There's not a single city added yet.");
+        }
         return this.cities;
     }
 }
