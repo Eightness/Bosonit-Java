@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Block6PathVariableHeadersApplication {
+public class RestServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Block6PathVariableHeadersApplication.class, args);
+		SpringApplication.run(RestServiceApplication.class, args);
 	}
 
 }
