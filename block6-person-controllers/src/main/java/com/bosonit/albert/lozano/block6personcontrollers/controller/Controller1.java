@@ -17,7 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Class Controller1. First controller. Will manage person addition.
+ * Class Controller1. First controller. Will manage person and city addition.
  */
 @RestController //Indicates that this class' methods will be receiving RESTful requests.
 @RequestMapping("/controller1") //Defining class' level route.

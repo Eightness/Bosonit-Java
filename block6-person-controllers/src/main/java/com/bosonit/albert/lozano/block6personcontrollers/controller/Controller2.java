@@ -20,7 +20,7 @@ org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Class Controller2. Second controller. Will manage object Person.
+ * Class Controller2. Second controller. Will manage getting a person's object and list of cities' objects.
  */
 @RestController //Indicates that this class' methods will be receiving RESTful requests.
 @RequestMapping("/controller2") //Defining class level route.
