@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/controller1") //Defining class' level route.
 public class Controller1 {
     //Attributes.
-    @Autowired  //Dependencies injection.
     private final PersonServiceInterface personServiceInterface;
     private final CityServiceInterface cityServiceInterface;
 

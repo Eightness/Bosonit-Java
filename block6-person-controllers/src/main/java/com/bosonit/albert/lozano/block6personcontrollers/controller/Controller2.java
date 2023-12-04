@@ -26,7 +26,6 @@ import java.util.List;
 @RequestMapping("/controller2") //Defining class level route.
 public class Controller2 {
     //Attributes.
-    @Autowired  //Dependencies injection.
     private final PersonServiceInterface personServiceInterface;
     private final CityServiceInterface cityServiceInterface;
 
