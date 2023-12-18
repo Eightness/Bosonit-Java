@@ -23,4 +23,5 @@ public interface PersonRepository extends JpaRepository<Person, Integer> {
         Integer -> Defines object's PK type.
      */
     List<Person> findByName(String name);
+    List<Person> findByTown(String town);
 }

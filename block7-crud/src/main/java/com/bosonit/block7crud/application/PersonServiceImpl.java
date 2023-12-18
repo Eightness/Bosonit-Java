@@ -11,8 +11,6 @@ import com.bosonit.block7crud.controller.dto.PersonOutputDto;
 import com.bosonit.block7crud.domain.Person;
 import com.bosonit.block7crud.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +33,16 @@ public class PersonServiceImpl implements PersonService{
 
     @Override
     public PersonOutputDto updatePerson(int id, PersonInputDto personInputDto) {
-        personRepository.findById(personInputDto.getId()).orElseThrow();
-        return personMapper.toPersonOutputDto(personRepository.save(new Person(personInputDto)));   //Doubt.
+        Person existingPerson = personRepository.findById(id)
+                .orElseThrow();
+
+        existingPerson.setName(personInputDto.getInputName());
+        existingPerson.setAge(personInputDto.getInputAge());
+        existingPerson.setTown(personInputDto.getInputTown());
+
+        Person updatedPerson = personRepository.save(existingPerson);
+
+        return personMapper.toPersonOutputDto(updatedPerson);
     }
 
     @Override
@@ -64,9 +70,8 @@ public class PersonServiceImpl implements PersonService{
 
     @Override
     public List<PersonOutputDto> getAllPersons(int pageNumber, int pageSize) {
-        PageRequest pageRequest = PageRequest.of(pageNumber, pageSize);
-        Page<Person> personPage = personRepository.findAll(pageRequest);
-        return null; //Doubt.
+
+        return personMapper.toPersonOutputDtoList(personRepository.findAll()); //Doubt.
     }
 
 }

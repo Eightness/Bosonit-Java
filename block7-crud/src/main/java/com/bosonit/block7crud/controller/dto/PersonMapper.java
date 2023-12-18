@@ -8,9 +8,8 @@ package com.bosonit.block7crud.controller.dto;
 import com.bosonit.block7crud.domain.Person;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-
+import org.mapstruct.factory.Mappers;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * PersonMapper interface. It's a mapper from MapStruct. Automatically maps DTOs.
@@ -19,6 +18,8 @@ import java.util.Optional;
 public interface PersonMapper {
     //Logic: PersonInputDto -> Person -> PersonOutputDto.
     //We'll work with this mapper in PersonServiceImpl.
+
+    PersonMapper INSTANCE = Mappers.getMapper(PersonMapper.class);
 
     //Mapping PersonInputDto -> Person.
     @Mapping(target = "name", source = "inputName")
@@ -31,4 +32,7 @@ public interface PersonMapper {
     @Mapping(target = "outputAge", source = "age")
     @Mapping(target = "outputTown", source = "town")
     PersonOutputDto toPersonOutputDto(Person person);
+
+    //Mapping List<Person> -> List<PersonOutputDto>.
+    List<PersonOutputDto> toPersonOutputDtoList(List<Person> personList);
 }

@@ -17,7 +17,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PersonInputDto {
     //Attributes.
-    private int id;
     private String inputName;
     private String inputAge;
     private String inputTown;

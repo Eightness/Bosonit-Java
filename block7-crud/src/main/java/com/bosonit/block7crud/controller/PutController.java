@@ -25,7 +25,6 @@ public class PutController {
     //Methods.
     /**
      * Method updatePerson. Updates an already existing person in our database.
-     * @param id provided by the user.
      * @param personInputDto new person provided by the user.
      * @return ResponseEntity with this new person to PersonOutputDto.
      */

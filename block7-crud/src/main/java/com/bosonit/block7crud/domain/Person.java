@@ -23,6 +23,7 @@ import lombok.NoArgsConstructor;
 public class Person {
     //Attributes.
     @Id
+    @GeneratedValue
     private int id;
     private String name;
     private String age;
@@ -30,7 +31,6 @@ public class Person {
 
     //Custom constructor with PersonInputDto.
     public Person(PersonInputDto personInputDto) {
-        this.id = personInputDto.getId();
         this.name = personInputDto.getInputName();
         this.age = personInputDto.getInputAge();
         this.town = personInputDto.getInputTown();
