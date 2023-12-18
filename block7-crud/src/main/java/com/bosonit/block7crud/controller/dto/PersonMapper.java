@@ -9,6 +9,7 @@ import com.bosonit.block7crud.domain.Person;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
 import java.util.Optional;
 
 /**

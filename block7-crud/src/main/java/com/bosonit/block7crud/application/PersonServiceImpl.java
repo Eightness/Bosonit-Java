@@ -11,7 +11,10 @@ import com.bosonit.block7crud.controller.dto.PersonOutputDto;
 import com.bosonit.block7crud.domain.Person;
 import com.bosonit.block7crud.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,25 +30,19 @@ public class PersonServiceImpl implements PersonService{
     //Override methods from PersonService.
     @Override
     public PersonOutputDto addPerson(PersonInputDto personInputDto) {
-        Person person = personMapper.toPerson(personInputDto);
-        personRepository.save(person);
-        return personMapper.toPersonOutputDto(person);
+        return personMapper.toPersonOutputDto(personRepository.save(new Person(personInputDto)));
     }
 
     @Override
     public PersonOutputDto updatePerson(int id, PersonInputDto personInputDto) {
-        //To do:
-        // Control if a field is null.
-        // Return 404 if there's not a person with the provided id.
-        personRepository.findById(id).orElseThrow();
-        personRepository.deleteById(id);
-        return personMapper.toPersonOutputDto(personRepository.save(personMapper.toPerson(personInputDto)));
+        personRepository.findById(personInputDto.getId()).orElseThrow();
+        return personMapper.toPersonOutputDto(personRepository.save(new Person(personInputDto)));   //Doubt.
     }
 
     @Override
     public void deletePersonById(int id) {
-        //To do:
-        // Return 404 if there's not a person with the provided id.
+        personRepository.findById(id).orElseThrow();
+        personRepository.deleteById(id);
     }
 
     @Override
@@ -55,12 +52,21 @@ public class PersonServiceImpl implements PersonService{
 
     @Override
     public List<PersonOutputDto> getPersonByName(String name) {
-        return null;
+        List<Person> persons = personRepository.findByName(name);
+        List<PersonOutputDto> personsOutputDto = new ArrayList<>();
+        for (Person person : persons) {
+            if (person != null) {
+                personsOutputDto.add(personMapper.toPersonOutputDto(person));
+            }
+        }
+        return personsOutputDto;
     }
 
     @Override
     public List<PersonOutputDto> getAllPersons(int pageNumber, int pageSize) {
-        return null;
+        PageRequest pageRequest = PageRequest.of(pageNumber, pageSize);
+        Page<Person> personPage = personRepository.findAll(pageRequest);
+        return null; //Doubt.
     }
 
 }
