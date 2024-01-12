@@ -3,10 +3,10 @@
  * @version 1.0
  */
 
-package com.bosonit.block7crudvalidation.application;
+package com.bosonit.block7crudvalidation.application.services;
 
-import com.bosonit.block7crudvalidation.controller.dto.PersonInputDto;
-import com.bosonit.block7crudvalidation.controller.dto.PersonOutputDto;
+import com.bosonit.block7crudvalidation.controller.dto.inputDto.PersonInputDto;
+import com.bosonit.block7crudvalidation.controller.dto.outputDto.PersonOutputDto;
 
 import java.util.List;
 

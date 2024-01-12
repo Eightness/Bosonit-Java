@@ -3,11 +3,12 @@
  * @version 1.0
  */
 
-package com.bosonit.block7crudvalidation.application;
+package com.bosonit.block7crudvalidation.application.implementations;
 
-import com.bosonit.block7crudvalidation.controller.dto.PersonInputDto;
-import com.bosonit.block7crudvalidation.controller.dto.PersonMapper;
-import com.bosonit.block7crudvalidation.controller.dto.PersonOutputDto;
+import com.bosonit.block7crudvalidation.application.services.PersonService;
+import com.bosonit.block7crudvalidation.controller.dto.inputDto.PersonInputDto;
+import com.bosonit.block7crudvalidation.controller.dto.mappers.PersonMapper;
+import com.bosonit.block7crudvalidation.controller.dto.outputDto.PersonOutputDto;
 import com.bosonit.block7crudvalidation.domain.Person;
 import com.bosonit.block7crudvalidation.respository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,30 +18,30 @@ import java.util.List;
 /**
  * Class PersonServiceImpl. Implements PersonService interface and contains all methods related to Person's CRUD.
  */
-public class PersonServiceImpl implements PersonService{
+public class PersonServiceImpl implements PersonService {
     //Attributes.
     @Autowired
     PersonRepository personRepository;
     @Autowired
-    private final PersonMapper personMapper = PersonMapper.INSTANCE;
+    PersonMapper personMapper;
 
     //Methods.
     @Override
     public PersonOutputDto getPersonById(int id) {
         Person person = personRepository.findById(id).orElseThrow();
-        return personMapper.toPersonOutputDto(person);
+        return personMapper.domainToOutput(person);
     }
 
     @Override
     public List<PersonOutputDto> getPersonByName(String name) {
         List<Person> persons = personRepository.findByName(name);
-        return personMapper.toPersonOutputDtoList(persons);
+        return personMapper.domainToOutput(persons);
     }
 
     @Override
     public List<PersonOutputDto> getAllPersons(int pageNumber, int pageSize) {
         List<Person> persons = personRepository.findAll();
-        return personMapper.toPersonOutputDtoList(persons);
+        return personMapper.domainToOutput(persons);
     }
 
     @Override

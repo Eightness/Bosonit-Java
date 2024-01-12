@@ -3,10 +3,8 @@
  * @version 1.0
  */
 
-package com.bosonit.block7crudvalidation.controller.dto;
+package com.bosonit.block7crudvalidation.controller.dto.inputDto;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

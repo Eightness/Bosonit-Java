@@ -5,10 +5,9 @@
 
 package com.bosonit.block7crudvalidation.controller;
 
-import com.bosonit.block7crudvalidation.application.PersonService;
-import com.bosonit.block7crudvalidation.controller.dto.PersonInputDto;
-import com.bosonit.block7crudvalidation.controller.dto.PersonMapper;
-import com.bosonit.block7crudvalidation.controller.dto.PersonOutputDto;
+import com.bosonit.block7crudvalidation.application.services.PersonService;
+import com.bosonit.block7crudvalidation.controller.dto.inputDto.PersonInputDto;
+import com.bosonit.block7crudvalidation.controller.dto.outputDto.PersonOutputDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,11 +15,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Class TestController. RestController to manage all HTTP methods.
+ * Class PersonController. RestController to manage all HTTP methods for a Person.
  */
 @RestController
 @RequestMapping("/person")
-public class TestController {
+public class PersonController {
     //Attributes.
     @Autowired
     private PersonService personService;
@@ -76,7 +75,7 @@ public class TestController {
         return null;
     }
 
-    //Deletes methods.
+    //Delete methods.
     @DeleteMapping("/deletePersonById")
     public ResponseEntity<PersonOutputDto> deletePersonById(int id) {
         return null;
