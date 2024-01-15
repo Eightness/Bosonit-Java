@@ -11,19 +11,21 @@ import com.bosonit.block7crudvalidation.controller.dto.mappers.PersonMapper;
 import com.bosonit.block7crudvalidation.controller.dto.outputDto.PersonOutputDto;
 import com.bosonit.block7crudvalidation.domain.Person;
 import com.bosonit.block7crudvalidation.respository.PersonRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Class PersonServiceImpl. Implements PersonService interface and contains all methods related to Person's CRUD.
  */
+@AllArgsConstructor
+@Service
 public class PersonServiceImpl implements GenericService<PersonInputDto, PersonOutputDto> {
     //Attributes.
-    @Autowired
-    PersonRepository personRepository;
-    @Autowired
-    PersonMapper personMapper;
+    private final PersonRepository personRepository;
+    private final PersonMapper personMapper;
 
     //Methods.
     @Override

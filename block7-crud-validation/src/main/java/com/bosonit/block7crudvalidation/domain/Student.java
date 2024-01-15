@@ -16,7 +16,7 @@ public class Student {
     // Attributes.
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private String studentId;
+    private long studentId;
 
     @OneToOne
     @JoinColumn(name = "personId", nullable = false, unique = true)
@@ -34,6 +34,8 @@ public class Student {
     @NotNull
     private String branch;
 
-    @OneToMany(mappedBy = "students")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "Subject_Student", joinColumns = @JoinColumn(name = "students"),
+            inverseJoinColumns = @JoinColumn(name = "subjects"))
     private List<Subject> subjects;
 }

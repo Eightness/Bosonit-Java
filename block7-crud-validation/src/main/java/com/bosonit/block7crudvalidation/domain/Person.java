@@ -23,12 +23,12 @@ public class Person {
     //Attributes.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String personId;
+    private long personId;
 
     @NotNull
     @Max(10)
     @Min(6)
-    private String user;
+    private String login;
 
     @NotNull
     private String password;

@@ -18,9 +18,11 @@ public class Subject {
     //Attributes.
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private String subjectId;
+    private long subjectId;
 
-    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "Subject_Student", joinColumns = @JoinColumn(name = "subjects"),
+            inverseJoinColumns = @JoinColumn(name = "students"))
     private List<Student> students;
 
     private String subject;

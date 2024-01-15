@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.List;
 
 @Entity
@@ -17,7 +16,7 @@ public class Professor {
     //Attributes.
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private String professorId;
+    private long professorId;
 
     @OneToOne
     @JoinColumn(name = "personId", nullable = false, unique = true)
@@ -28,7 +27,7 @@ public class Professor {
     @NotNull
     private String branch;
 
-    @OneToMany(mappedBy = "professor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "professor", orphanRemoval = true)
     private List<Student> students;
 }
 
