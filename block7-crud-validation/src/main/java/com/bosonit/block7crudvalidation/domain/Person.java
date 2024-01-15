@@ -12,7 +12,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.Date;
 
 @Entity
@@ -23,27 +22,41 @@ import java.util.Date;
 public class Person {
     //Attributes.
     @Id
-    @GeneratedValue
-    private int personId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String personId;
+
     @NotNull
     @Max(10)
     @Min(6)
     private String user;
+
     @NotNull
     private String password;
+
     @NotNull
     private String name;
+
     private String surname;
+
     @NotNull
     private String companyEmail;
+
     @NotNull
     private String personalEmail;
+
     @NotNull
     private String city;
+
     @NotNull
-    private boolean active;
+    private Boolean active;
+
     @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
+
     private String imageUrl;
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date terminationDate;
 }
+

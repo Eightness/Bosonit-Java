@@ -1,4 +1,4 @@
-package com.bosonit.block7crudvalidation.controller.dto;
+package com.bosonit.block7crudvalidation.controller.dto.mappers;
 
 import java.util.List;
 

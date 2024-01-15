@@ -5,7 +5,7 @@
 
 package com.bosonit.block7crudvalidation.application.implementations;
 
-import com.bosonit.block7crudvalidation.application.services.PersonService;
+import com.bosonit.block7crudvalidation.application.services.GenericService;
 import com.bosonit.block7crudvalidation.controller.dto.inputDto.PersonInputDto;
 import com.bosonit.block7crudvalidation.controller.dto.mappers.PersonMapper;
 import com.bosonit.block7crudvalidation.controller.dto.outputDto.PersonOutputDto;
@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Class PersonServiceImpl. Implements PersonService interface and contains all methods related to Person's CRUD.
  */
-public class PersonServiceImpl implements PersonService {
+public class PersonServiceImpl implements GenericService<PersonInputDto, PersonOutputDto> {
     //Attributes.
     @Autowired
     PersonRepository personRepository;
@@ -27,60 +27,60 @@ public class PersonServiceImpl implements PersonService {
 
     //Methods.
     @Override
-    public PersonOutputDto getPersonById(int id) {
+    public PersonOutputDto getEntityById(int id) {
         Person person = personRepository.findById(id).orElseThrow();
         return personMapper.domainToOutput(person);
     }
 
     @Override
-    public List<PersonOutputDto> getPersonByName(String name) {
+    public List<PersonOutputDto> getEntitiesByName(String name) {
         List<Person> persons = personRepository.findByName(name);
         return personMapper.domainToOutput(persons);
     }
 
     @Override
-    public List<PersonOutputDto> getAllPersons(int pageNumber, int pageSize) {
+    public List<PersonOutputDto> getAllEntities(int pageNumber, int pageSize) {
         List<Person> persons = personRepository.findAll();
         return personMapper.domainToOutput(persons);
     }
 
     @Override
-    public PersonOutputDto addPerson(PersonInputDto personInputDto) {
+    public PersonOutputDto addEntity(PersonInputDto inputEntity) {
         return null;
     }
 
     @Override
-    public List<PersonOutputDto> addPersons(List<PersonInputDto> personInputDtoList) {
+    public List<PersonOutputDto> addEntities(List<PersonInputDto> inputEntities) {
         return null;
     }
 
     @Override
-    public PersonOutputDto updatePersonById(int id, PersonInputDto personInputDto) {
+    public PersonOutputDto updateEntityById(int id, PersonInputDto inputEntity) {
         return null;
     }
 
     @Override
-    public List<PersonOutputDto> updatePersonsByIds(List<Integer> ids, List<PersonInputDto> personInputDtoList) {
+    public List<PersonOutputDto> updateEntitiesByIds(List<Integer> ids, List<PersonInputDto> inputEntities) {
         return null;
     }
 
     @Override
-    public PersonOutputDto modifyPersonById(int id, PersonInputDto personInputDto) {
+    public PersonOutputDto modifyEntityById(int id, PersonInputDto inputEntity) {
         return null;
     }
 
     @Override
-    public List<PersonOutputDto> modifyPersonsByIds(List<Integer> ids, List<PersonInputDto> personInputDtoList) {
+    public List<PersonOutputDto> modifyEntitiesByIds(List<Integer> ids, List<PersonInputDto> inputEntities) {
         return null;
     }
 
     @Override
-    public void deletePersonById(int id) {
+    public void deleteEntityById(int id) {
 
     }
 
     @Override
-    public void deletePersonsById(List<Integer> ids) {
+    public void deleteEntitiesByIds(List<Integer> ids) {
 
     }
 }

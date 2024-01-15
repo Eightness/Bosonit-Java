@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Professor")
 @Data
@@ -16,10 +18,17 @@ public class Professor {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String professorId;
+
     @OneToOne
     @JoinColumn(name = "personId", nullable = false, unique = true)
-    private String personId;
+    private Person person;
+
     private String comments;
+
     @NotNull
     private String branch;
+
+    @OneToMany(mappedBy = "professor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Student> students;
 }
+

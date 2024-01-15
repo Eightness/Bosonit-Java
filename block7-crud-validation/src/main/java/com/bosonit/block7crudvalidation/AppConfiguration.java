@@ -8,11 +8,16 @@ package com.bosonit.block7crudvalidation;
 import com.bosonit.block7crudvalidation.application.implementations.ProfessorServiceImpl;
 import com.bosonit.block7crudvalidation.application.implementations.StudentServiceImpl;
 import com.bosonit.block7crudvalidation.application.implementations.SubjectServiceImpl;
-import com.bosonit.block7crudvalidation.application.services.PersonService;
 import com.bosonit.block7crudvalidation.application.implementations.PersonServiceImpl;
-import com.bosonit.block7crudvalidation.application.services.ProfessorService;
-import com.bosonit.block7crudvalidation.application.services.StudentService;
-import com.bosonit.block7crudvalidation.application.services.SubjectService;
+import com.bosonit.block7crudvalidation.application.services.GenericService;
+import com.bosonit.block7crudvalidation.controller.dto.inputDto.PersonInputDto;
+import com.bosonit.block7crudvalidation.controller.dto.inputDto.ProfessorInputDto;
+import com.bosonit.block7crudvalidation.controller.dto.inputDto.StudentInputDto;
+import com.bosonit.block7crudvalidation.controller.dto.inputDto.SubjectInputDto;
+import com.bosonit.block7crudvalidation.controller.dto.outputDto.PersonOutputDto;
+import com.bosonit.block7crudvalidation.controller.dto.outputDto.ProfessorOutputDto;
+import com.bosonit.block7crudvalidation.controller.dto.outputDto.StudentOutputDto;
+import com.bosonit.block7crudvalidation.controller.dto.outputDto.SubjectOutputDto;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -21,15 +26,21 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class AppConfiguration {
-    //Bean for PersonService interface (returns the only class that implements it).
+    //Beans.
     @Bean
-    public PersonService personService() {
+    public GenericService<PersonInputDto, PersonOutputDto> personService() {
         return new PersonServiceImpl();
     }
     @Bean
-    public ProfessorService professorService() { return new ProfessorServiceImpl(); }
+    public GenericService<ProfessorInputDto, ProfessorOutputDto> professorService() {
+        return new ProfessorServiceImpl();
+    }
     @Bean
-    public StudentService studentService() { return new StudentServiceImpl(); }
+    public GenericService<StudentInputDto, StudentOutputDto> studentService() {
+        return new StudentServiceImpl();
+    }
     @Bean
-    public SubjectService subjectService() { return new SubjectServiceImpl(); }
+    public GenericService<SubjectInputDto, SubjectOutputDto> subjectService() {
+        return new SubjectServiceImpl();
+    }
 }

@@ -1,6 +1,5 @@
 package com.bosonit.block7crudvalidation.controller.dto.mappers;
 
-import com.bosonit.block7crudvalidation.controller.dto.GenericDTOMapper;
 import com.bosonit.block7crudvalidation.controller.dto.inputDto.StudentInputDto;
 import com.bosonit.block7crudvalidation.controller.dto.outputDto.StudentOutputDto;
 import com.bosonit.block7crudvalidation.domain.Student;

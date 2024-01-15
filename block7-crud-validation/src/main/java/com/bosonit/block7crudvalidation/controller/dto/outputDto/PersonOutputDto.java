@@ -5,8 +5,15 @@
 
 package com.bosonit.block7crudvalidation.controller.dto.outputDto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class PersonOutputDto {
     //Attributes.
     private int personId;

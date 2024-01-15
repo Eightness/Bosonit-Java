@@ -19,13 +19,17 @@ public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String subjectId;
-    @ManyToOne
-    @JoinColumn(name = "studentId", nullable = false, unique = true)
+
+    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Student> students;
+
     private String subject;
     private String comments;
-    @NotNull
-    private Date initialDate;
-    private Date finishDate;
 
+    @NotNull
+    @Temporal(TemporalType.DATE)
+    private Date initialDate;
+
+    @Temporal(TemporalType.DATE)
+    private Date finishDate;
 }

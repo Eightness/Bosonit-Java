@@ -5,7 +5,7 @@
 
 package com.bosonit.block7crudvalidation.controller;
 
-import com.bosonit.block7crudvalidation.application.services.PersonService;
+import com.bosonit.block7crudvalidation.application.services.GenericService;
 import com.bosonit.block7crudvalidation.controller.dto.inputDto.PersonInputDto;
 import com.bosonit.block7crudvalidation.controller.dto.outputDto.PersonOutputDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import java.util.List;
 public class PersonController {
     //Attributes.
     @Autowired
-    private PersonService personService;
+    private GenericService<PersonInputDto, PersonOutputDto> personService;
 
     //Methods.
 
