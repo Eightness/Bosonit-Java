@@ -14,5 +14,4 @@ public interface ProfessorRepository extends JpaRepository<Professor, Integer> {
      */
 
     //Custom methods.
-    List<Professor> findByName(String name);
 }

@@ -14,5 +14,4 @@ public interface SubjectRepository extends JpaRepository<Subject, Integer> {
      */
 
     //Custom methods.
-    List<Subject> findByName(String name);
 }

@@ -14,5 +14,4 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
      */
 
     //Custom methods.
-    List<Student> findByName(String name);
 }

@@ -16,14 +16,13 @@ import java.util.List;
  */
 @Service
 public class ProfessorServiceImpl implements GenericService<ProfessorInputDto, ProfessorOutputDto> {
-
-    // Attributes.
+    //Attributes.
     @Autowired
     ProfessorRepository professorRepository;
     @Autowired
     ProfessorMapper professorMapper;
 
-    // Methods.
+    //Methods.
     @Override
     public ProfessorOutputDto getEntityById(int id) {
         Professor professor = professorRepository.findById(id).orElseThrow();
@@ -32,8 +31,7 @@ public class ProfessorServiceImpl implements GenericService<ProfessorInputDto, P
 
     @Override
     public List<ProfessorOutputDto> getEntitiesByName(String name) {
-        List<Professor> professors = professorRepository.findByName(name);
-        return professorMapper.domainToOutput(professors);
+        return null;
     }
 
     @Override

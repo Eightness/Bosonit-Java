@@ -28,8 +28,7 @@ public class SubjectServiceImpl implements GenericService<SubjectInputDto, Subje
 
     @Override
     public List<SubjectOutputDto> getEntitiesByName(String name) {
-        List<Subject> subjects = subjectRepository.findByName(name);
-        return subjectMapper.domainToOutput(subjects);
+        return null;
     }
 
     @Override

@@ -13,6 +13,7 @@ import com.bosonit.block7crudvalidation.domain.Person;
 import com.bosonit.block7crudvalidation.respository.PersonRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,12 +21,13 @@ import java.util.List;
 /**
  * Class PersonServiceImpl. Implements PersonService interface and contains all methods related to Person's CRUD.
  */
-@AllArgsConstructor
 @Service
 public class PersonServiceImpl implements GenericService<PersonInputDto, PersonOutputDto> {
     //Attributes.
-    private final PersonRepository personRepository;
-    private final PersonMapper personMapper;
+    @Autowired
+    private PersonRepository personRepository;
+    @Autowired
+    private PersonMapper personMapper;
 
     //Methods.
     @Override

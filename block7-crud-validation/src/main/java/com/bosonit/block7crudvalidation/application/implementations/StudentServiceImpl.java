@@ -13,7 +13,6 @@ import java.util.List;
 
 @Service
 public class StudentServiceImpl implements GenericService<StudentInputDto, StudentOutputDto> {
-
     //Attributes.
     @Autowired
     StudentRepository studentRepository;
@@ -29,8 +28,7 @@ public class StudentServiceImpl implements GenericService<StudentInputDto, Stude
 
     @Override
     public List<StudentOutputDto> getEntitiesByName(String name) {
-        List<Student> students = studentRepository.findByName(name);
-        return studentMapper.domainToOutput(students);
+        return null;
     }
 
     @Override
