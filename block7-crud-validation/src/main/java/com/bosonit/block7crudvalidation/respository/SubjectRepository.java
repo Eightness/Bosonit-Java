@@ -3,7 +3,9 @@ package com.bosonit.block7crudvalidation.respository;
 import com.bosonit.block7crudvalidation.domain.Subject;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface SubjectRepository extends JpaRepository<Subject, String> {
+import java.util.List;
+
+public interface SubjectRepository extends JpaRepository<Subject, Integer> {
     /*
     Thanks to extending from JpaRepository, we can persist and read data (Access to CRUD and query methods).
     <Subject, String>
@@ -12,4 +14,5 @@ public interface SubjectRepository extends JpaRepository<Subject, String> {
      */
 
     //Custom methods.
+    List<Subject> findByName(String name);
 }

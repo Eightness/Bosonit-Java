@@ -48,41 +48,58 @@ public class PersonServiceImpl implements GenericService<PersonInputDto, PersonO
 
     @Override
     public PersonOutputDto addEntity(PersonInputDto inputEntity) {
-        return null;
+        Person person = personMapper.inputToDomain(inputEntity);
+        person = personRepository.save(person);
+        return personMapper.domainToOutput(person);
     }
 
     @Override
     public List<PersonOutputDto> addEntities(List<PersonInputDto> inputEntities) {
-        return null;
+        List<Person> persons = personMapper.inputToDomain(inputEntities);
+        persons = personRepository.saveAll(persons);
+        return personMapper.domainToOutput(persons);
     }
 
     @Override
     public PersonOutputDto updateEntityById(int id, PersonInputDto inputEntity) {
-        return null;
+        personRepository.findById(id).orElseThrow();
+        Person updatedPerson = personMapper.inputToDomain(inputEntity);
+        updatedPerson = personRepository.save(updatedPerson);
+        return personMapper.domainToOutput(updatedPerson);
     }
 
     @Override
     public List<PersonOutputDto> updateEntitiesByIds(List<Integer> ids, List<PersonInputDto> inputEntities) {
-        return null;
+        personRepository.findAllById(ids);
+        List<Person> updatedPersons = personMapper.inputToDomain(inputEntities);
+        updatedPersons = personRepository.saveAll(updatedPersons);
+        return personMapper.domainToOutput(updatedPersons);
     }
 
     @Override
     public PersonOutputDto modifyEntityById(int id, PersonInputDto inputEntity) {
-        return null;
+        personRepository.findById(id).orElseThrow();
+        Person modifiedPerson = personMapper.inputToDomain(inputEntity);
+        modifiedPerson = personRepository.save(modifiedPerson);
+        return personMapper.domainToOutput(modifiedPerson);
     }
 
     @Override
     public List<PersonOutputDto> modifyEntitiesByIds(List<Integer> ids, List<PersonInputDto> inputEntities) {
-        return null;
+        personRepository.findAllById(ids);
+        List<Person> modifiedPersons = personMapper.inputToDomain(inputEntities);
+        modifiedPersons = personRepository.saveAll(modifiedPersons);
+        return personMapper.domainToOutput(modifiedPersons);
     }
 
     @Override
     public void deleteEntityById(int id) {
-
+        personRepository.deleteById(id);
     }
 
     @Override
     public void deleteEntitiesByIds(List<Integer> ids) {
-
+        personRepository.deleteAllById(ids);
     }
+
 }
