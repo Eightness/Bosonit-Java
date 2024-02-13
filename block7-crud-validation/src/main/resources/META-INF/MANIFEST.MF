@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: com.bosonit.block7crudvalidation.Block7CrudValidationApplica
+ tion
+
