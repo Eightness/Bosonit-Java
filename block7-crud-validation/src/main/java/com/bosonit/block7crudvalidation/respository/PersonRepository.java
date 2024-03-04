@@ -1,6 +1,6 @@
 /**
  * @author Albert Lozano Blasco
- * @version 1.0
+ * @version 11.0
  */
 
 package com.bosonit.block7crudvalidation.respository;
@@ -11,16 +11,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 /**
- * Interface PersonRepository. Extends from JpaRepository and contains all methods related to Person's persistence.
+ * PersonRepository interface . Extends from JpaRepository and contains all methods related to Person's persistence.
  */
-public interface PersonRepository extends JpaRepository<Person, Integer> {
+public interface PersonRepository extends JpaRepository<Person, Long> {
     /*
     Thanks to extending from JpaRepository, we can persist and read data (Access to CRUD and query methods).
-    <Person, Integer>
+    <Person, Long>
         Person -> Defines entity to persist.
-        Integer -> Defines entity's primary key type.
+        Long -> Defines entity's primary key type.
      */
 
-    //Custom methods.
+    // Custom methods
     List<Person> findByName(String name);
 }

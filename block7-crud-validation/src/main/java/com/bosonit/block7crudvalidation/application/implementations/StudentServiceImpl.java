@@ -1,3 +1,8 @@
+/**
+ * @author Albert Lozano Blasco
+ * @version 11.0
+ */
+
 package com.bosonit.block7crudvalidation.application.implementations;
 
 import com.bosonit.block7crudvalidation.application.services.GenericService;
@@ -11,85 +16,85 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * StudentServiceImpl class. Implements GenericService interface and contains all methods related to Students' CRUD.
+ */
 @Service
-public class StudentServiceImpl implements GenericService<StudentInputDto, StudentOutputDto> {
-    //Attributes.
+public class StudentServiceImpl implements GenericService<StudentInputDto, StudentOutputDto, Long> {
+    // Attributes
     @Autowired
     StudentRepository studentRepository;
     @Autowired
     StudentMapper studentMapper;
 
-    //Methods.
+    // Methods
     @Override
-    public StudentOutputDto getEntityById(int id) {
+    public StudentOutputDto getEntityById(Long id) {
         Student student = studentRepository.findById(id).orElseThrow();
         return studentMapper.domainToOutput(student);
     }
 
     @Override
-    public List<StudentOutputDto> getEntitiesByName(String name) {
+    public List<StudentOutputDto> getEntitiesByIds(List<Long> ids) {
         return null;
     }
 
     @Override
     public List<StudentOutputDto> getAllEntities(int pageNumber, int pageSize) {
-        List<Student> students = studentRepository.findAll();
-        return studentMapper.domainToOutput(students);
+        List<Student> allStudents = studentRepository.findAll();
+        return studentMapper.domainToOutput(allStudents);
     }
 
     @Override
     public StudentOutputDto addEntity(StudentInputDto inputEntity) {
         Student student = studentMapper.inputToDomain(inputEntity);
-        student = studentRepository.save(student);
+        studentRepository.save(student);
         return studentMapper.domainToOutput(student);
     }
 
     @Override
     public List<StudentOutputDto> addEntities(List<StudentInputDto> inputEntities) {
-        List<Student> students = studentMapper.inputToDomain(inputEntities);
-        students = studentRepository.saveAll(students);
-        return studentMapper.domainToOutput(students);
+        return null;
     }
 
     @Override
-    public StudentOutputDto updateEntityById(int id, StudentInputDto inputEntity) {
+    public StudentOutputDto updateEntityById(Long id, StudentInputDto inputEntity) {
         studentRepository.findById(id).orElseThrow();
-        Student updatedStudent = studentMapper.inputToDomain(inputEntity);
-        updatedStudent = studentRepository.save(updatedStudent);
-        return studentMapper.domainToOutput(updatedStudent);
+        Student student = studentMapper.inputToDomain(inputEntity);
+        studentRepository.save(student);
+        return studentMapper.domainToOutput(student);
     }
 
     @Override
-    public List<StudentOutputDto> updateEntitiesByIds(List<Integer> ids, List<StudentInputDto> inputEntities) {
-        studentRepository.findAllById(ids);
-        List<Student> updatedStudents = studentMapper.inputToDomain(inputEntities);
-        updatedStudents = studentRepository.saveAll(updatedStudents);
-        return studentMapper.domainToOutput(updatedStudents);
+    public List<StudentOutputDto> updateEntitiesByIds(List<Long> ids, List<StudentInputDto> inputEntities) {
+        return null;
     }
 
     @Override
-    public StudentOutputDto modifyEntityById(int id, StudentInputDto inputEntity) {
+    public StudentOutputDto modifyEntityById(Long id, StudentInputDto inputEntity) {
         studentRepository.findById(id).orElseThrow();
-        Student modifiedStudent = studentMapper.inputToDomain(inputEntity);
-        modifiedStudent = studentRepository.save(modifiedStudent);
-        return studentMapper.domainToOutput(modifiedStudent);
+        Student student = studentMapper.inputToDomain(inputEntity);
+        studentRepository.save(student);
+        return studentMapper.domainToOutput(student);
     }
 
     @Override
-    public List<StudentOutputDto> modifyEntitiesByIds(List<Integer> ids, List<StudentInputDto> inputEntities) {
-        studentRepository.findAllById(ids);
-        List<Student> modifiedStudents = studentMapper.inputToDomain(inputEntities);
-        modifiedStudents = studentRepository.saveAll(modifiedStudents);
-        return studentMapper.domainToOutput(modifiedStudents);
+    public List<StudentOutputDto> modifyEntitiesByIds(List<Long> ids, List<StudentInputDto> inputEntities) {
+        return null;
     }
 
     @Override
-    public void deleteEntityById(int id) {
+    public void deleteEntityById(Long id) {
         studentRepository.deleteById(id);
     }
 
     @Override
-    public void deleteEntitiesByIds(List<Integer> ids) {
-        studentRepository.deleteAllById(ids);
+    public void deleteEntitiesByIds(List<Long> ids) {
+
+    }
+
+    @Override
+    public void deleteAllEntities() {
+        studentRepository.deleteAll();
     }
 }

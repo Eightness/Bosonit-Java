@@ -1,3 +1,8 @@
+/**
+ * @author Albert Lozano Blasco
+ * @version 11.0
+ */
+
 package com.bosonit.block7crudvalidation.application.implementations;
 
 import com.bosonit.block7crudvalidation.application.services.GenericService;
@@ -12,87 +17,84 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Class ProfessorServiceImpl. Implements GenericService interface and contains all methods related to Professors' CRUD.
+ * ProfessorServiceImpl class. Implements GenericService interface and contains all methods related to Professors' CRUD.
  */
 @Service
-public class ProfessorServiceImpl implements GenericService<ProfessorInputDto, ProfessorOutputDto> {
-    //Attributes.
+public class ProfessorServiceImpl implements GenericService<ProfessorInputDto, ProfessorOutputDto, Long> {
+    // Attributes
     @Autowired
     ProfessorRepository professorRepository;
     @Autowired
     ProfessorMapper professorMapper;
 
-    //Methods.
+    // Methods
     @Override
-    public ProfessorOutputDto getEntityById(int id) {
+    public ProfessorOutputDto getEntityById(Long id) {
         Professor professor = professorRepository.findById(id).orElseThrow();
         return professorMapper.domainToOutput(professor);
     }
 
     @Override
-    public List<ProfessorOutputDto> getEntitiesByName(String name) {
+    public List<ProfessorOutputDto> getEntitiesByIds(List<Long> ids) {
         return null;
     }
 
     @Override
     public List<ProfessorOutputDto> getAllEntities(int pageNumber, int pageSize) {
-        List<Professor> professors = professorRepository.findAll();
-        return professorMapper.domainToOutput(professors);
+        List<Professor> allProfessors = professorRepository.findAll();
+        return professorMapper.domainToOutput(allProfessors);
     }
 
     @Override
     public ProfessorOutputDto addEntity(ProfessorInputDto inputEntity) {
         Professor professor = professorMapper.inputToDomain(inputEntity);
-        professor = professorRepository.save(professor);
+        professorRepository.save(professor);
         return professorMapper.domainToOutput(professor);
     }
 
     @Override
     public List<ProfessorOutputDto> addEntities(List<ProfessorInputDto> inputEntities) {
-        List<Professor> professors = professorMapper.inputToDomain(inputEntities);
-        professors = professorRepository.saveAll(professors);
-        return professorMapper.domainToOutput(professors);
+        return null;
     }
 
     @Override
-    public ProfessorOutputDto updateEntityById(int id, ProfessorInputDto inputEntity) {
+    public ProfessorOutputDto updateEntityById(Long id, ProfessorInputDto inputEntity) {
         professorRepository.findById(id).orElseThrow();
-        Professor updatedProfessor = professorMapper.inputToDomain(inputEntity);
-        updatedProfessor = professorRepository.save(updatedProfessor);
-        return professorMapper.domainToOutput(updatedProfessor);
+        Professor professor = professorMapper.inputToDomain(inputEntity);
+        professorRepository.save(professor);
+        return professorMapper.domainToOutput(professor);
     }
 
     @Override
-    public List<ProfessorOutputDto> updateEntitiesByIds(List<Integer> ids, List<ProfessorInputDto> inputEntities) {
-        professorRepository.findAllById(ids);
-        List<Professor> updatedProfessors = professorMapper.inputToDomain(inputEntities);
-        updatedProfessors = professorRepository.saveAll(updatedProfessors);
-        return professorMapper.domainToOutput(updatedProfessors);
+    public List<ProfessorOutputDto> updateEntitiesByIds(List<Long> ids, List<ProfessorInputDto> inputEntities) {
+        return null;
     }
 
     @Override
-    public ProfessorOutputDto modifyEntityById(int id, ProfessorInputDto inputEntity) {
+    public ProfessorOutputDto modifyEntityById(Long id, ProfessorInputDto inputEntity) {
         professorRepository.findById(id).orElseThrow();
-        Professor modifiedProfessor = professorMapper.inputToDomain(inputEntity);
-        modifiedProfessor = professorRepository.save(modifiedProfessor);
-        return professorMapper.domainToOutput(modifiedProfessor);
+        Professor professor = professorMapper.inputToDomain(inputEntity);
+        professorRepository.save(professor);
+        return professorMapper.domainToOutput(professor);
     }
 
     @Override
-    public List<ProfessorOutputDto> modifyEntitiesByIds(List<Integer> ids, List<ProfessorInputDto> inputEntities) {
-        professorRepository.findAllById(ids);
-        List<Professor> modifiedProfessors = professorMapper.inputToDomain(inputEntities);
-        modifiedProfessors = professorRepository.saveAll(modifiedProfessors);
-        return professorMapper.domainToOutput(modifiedProfessors);
+    public List<ProfessorOutputDto> modifyEntitiesByIds(List<Long> ids, List<ProfessorInputDto> inputEntities) {
+        return null;
     }
 
     @Override
-    public void deleteEntityById(int id) {
+    public void deleteEntityById(Long id) {
         professorRepository.deleteById(id);
     }
 
     @Override
-    public void deleteEntitiesByIds(List<Integer> ids) {
-        professorRepository.deleteAllById(ids);
+    public void deleteEntitiesByIds(List<Long> ids) {
+
+    }
+
+    @Override
+    public void deleteAllEntities() {
+        professorRepository.deleteAll();
     }
 }

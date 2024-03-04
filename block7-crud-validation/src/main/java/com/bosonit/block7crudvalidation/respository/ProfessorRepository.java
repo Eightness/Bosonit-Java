@@ -1,17 +1,23 @@
+/**
+ * @author Albert Lozano Blasco
+ * @version 11.0
+ */
+
 package com.bosonit.block7crudvalidation.respository;
 
 import com.bosonit.block7crudvalidation.domain.Professor;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
-public interface ProfessorRepository extends JpaRepository<Professor, Integer> {
+/**
+ * ProfessorRepository interface . Extends from JpaRepository and contains all methods related to Professor's persistence.
+ */
+public interface ProfessorRepository extends JpaRepository<Professor, Long> {
     /*
     Thanks to extending from JpaRepository, we can persist and read data (Access to CRUD and query methods).
-    <Professor, String>
+    <Professor, Long>
         Professor -> Defines entity to persist.
-        String -> Defines entity's primary key type.
+        Long -> Defines entity's primary key type.
      */
 
-    //Custom methods.
+    // Custom methods
 }

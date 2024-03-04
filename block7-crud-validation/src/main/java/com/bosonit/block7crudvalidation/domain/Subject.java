@@ -1,3 +1,8 @@
+/**
+ * @author Albert Lozano Blasco
+ * @version 11.0
+ */
+
 package com.bosonit.block7crudvalidation.domain;
 
 import jakarta.persistence.*;
@@ -9,13 +14,16 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Subject class. Defines a subject.
+ */
 @Entity
 @Table(name = "Subject")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Subject {
-    //Attributes.
+    // Attributes
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long subjectId;

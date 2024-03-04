@@ -1,6 +1,6 @@
 /**
  * @author Albert Lozano Blasco
- * @version 1.0
+ * @version 11.0
  */
 
 package com.bosonit.block7crudvalidation;
@@ -22,25 +22,28 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Class AppConfiguration. Defines all Beans for the project to run.
+ * AppConfiguration class. Defines all Beans for the project to run.
  */
 @Configuration
 public class AppConfiguration {
-    //Beans.
+    // Beans
     @Bean
-    public GenericService<PersonInputDto, PersonOutputDto> personService() {
+    public GenericService<PersonInputDto, PersonOutputDto, Long> personService() {
         return new PersonServiceImpl();
     }
+
     @Bean
-    public GenericService<ProfessorInputDto, ProfessorOutputDto> professorService() {
+    public GenericService<ProfessorInputDto, ProfessorOutputDto, Long> professorService() {
         return new ProfessorServiceImpl();
     }
+
     @Bean
-    public GenericService<StudentInputDto, StudentOutputDto> studentService() {
+    public GenericService<StudentInputDto, StudentOutputDto, Long> studentService() {
         return new StudentServiceImpl();
     }
+
     @Bean
-    public GenericService<SubjectInputDto, SubjectOutputDto> subjectService() {
+    public GenericService<SubjectInputDto, SubjectOutputDto, Long> subjectService() {
         return new SubjectServiceImpl();
     }
 }

@@ -1,3 +1,8 @@
+/**
+ * @author Albert Lozano Blasco
+ * @version 11.0
+ */
+
 package com.bosonit.block7crudvalidation.domain;
 
 import jakarta.persistence.*;
@@ -7,13 +12,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.List;
 
+/**
+ * Student class. Defines a student.
+ */
 @Entity
 @Table(name = "Student")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Student {
-    // Attributes.
+    // Attributes
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long studentId;

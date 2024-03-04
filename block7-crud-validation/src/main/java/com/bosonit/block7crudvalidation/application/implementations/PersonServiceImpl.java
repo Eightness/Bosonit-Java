@@ -1,6 +1,6 @@
 /**
  * @author Albert Lozano Blasco
- * @version 1.0
+ * @version 11.0
  */
 
 package com.bosonit.block7crudvalidation.application.implementations;
@@ -11,97 +11,90 @@ import com.bosonit.block7crudvalidation.controller.dto.mappers.PersonMapper;
 import com.bosonit.block7crudvalidation.controller.dto.outputDto.PersonOutputDto;
 import com.bosonit.block7crudvalidation.domain.Person;
 import com.bosonit.block7crudvalidation.respository.PersonRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
- * Class PersonServiceImpl. Implements PersonService interface and contains all methods related to Person's CRUD.
+ * PersonServiceImpl class. Implements PersonService interface and contains all methods related to Person's CRUD.
  */
 @Service
-public class PersonServiceImpl implements GenericService<PersonInputDto, PersonOutputDto> {
-    //Attributes.
+public class PersonServiceImpl implements GenericService<PersonInputDto, PersonOutputDto, Long> {
+    // Attributes
     @Autowired
-    private PersonRepository personRepository;
+    PersonRepository personRepository;
     @Autowired
-    private PersonMapper personMapper;
+    PersonMapper personMapper;
 
-    //Methods.
+    // Methods
     @Override
-    public PersonOutputDto getEntityById(int id) {
+    public PersonOutputDto getEntityById(Long id) {
         Person person = personRepository.findById(id).orElseThrow();
         return personMapper.domainToOutput(person);
     }
 
     @Override
-    public List<PersonOutputDto> getEntitiesByName(String name) {
-        List<Person> persons = personRepository.findByName(name);
-        return personMapper.domainToOutput(persons);
+    public List<PersonOutputDto> getEntitiesByIds(List<Long> ids) {
+        return null;
     }
 
     @Override
     public List<PersonOutputDto> getAllEntities(int pageNumber, int pageSize) {
-        List<Person> persons = personRepository.findAll();
-        return personMapper.domainToOutput(persons);
+        List<Person> allPersons = personRepository.findAll();
+        return personMapper.domainToOutput(allPersons);
     }
 
     @Override
     public PersonOutputDto addEntity(PersonInputDto inputEntity) {
         Person person = personMapper.inputToDomain(inputEntity);
-        person = personRepository.save(person);
+        personRepository.save(person);
         return personMapper.domainToOutput(person);
     }
 
     @Override
     public List<PersonOutputDto> addEntities(List<PersonInputDto> inputEntities) {
-        List<Person> persons = personMapper.inputToDomain(inputEntities);
-        persons = personRepository.saveAll(persons);
-        return personMapper.domainToOutput(persons);
+        return null;
     }
 
     @Override
-    public PersonOutputDto updateEntityById(int id, PersonInputDto inputEntity) {
+    public PersonOutputDto updateEntityById(Long id, PersonInputDto inputEntity) {
         personRepository.findById(id).orElseThrow();
-        Person updatedPerson = personMapper.inputToDomain(inputEntity);
-        updatedPerson = personRepository.save(updatedPerson);
-        return personMapper.domainToOutput(updatedPerson);
+        Person person = personMapper.inputToDomain(inputEntity);
+        personRepository.save(person);
+        return personMapper.domainToOutput(person);
     }
 
     @Override
-    public List<PersonOutputDto> updateEntitiesByIds(List<Integer> ids, List<PersonInputDto> inputEntities) {
-        personRepository.findAllById(ids);
-        List<Person> updatedPersons = personMapper.inputToDomain(inputEntities);
-        updatedPersons = personRepository.saveAll(updatedPersons);
-        return personMapper.domainToOutput(updatedPersons);
+    public List<PersonOutputDto> updateEntitiesByIds(List<Long> ids, List<PersonInputDto> inputEntities) {
+        return null;
     }
 
     @Override
-    public PersonOutputDto modifyEntityById(int id, PersonInputDto inputEntity) {
+    public PersonOutputDto modifyEntityById(Long id, PersonInputDto inputEntity) {
         personRepository.findById(id).orElseThrow();
-        Person modifiedPerson = personMapper.inputToDomain(inputEntity);
-        modifiedPerson = personRepository.save(modifiedPerson);
-        return personMapper.domainToOutput(modifiedPerson);
+        Person person = personMapper.inputToDomain(inputEntity);
+        personRepository.save(person);
+        return personMapper.domainToOutput(person);
     }
 
     @Override
-    public List<PersonOutputDto> modifyEntitiesByIds(List<Integer> ids, List<PersonInputDto> inputEntities) {
-        personRepository.findAllById(ids);
-        List<Person> modifiedPersons = personMapper.inputToDomain(inputEntities);
-        modifiedPersons = personRepository.saveAll(modifiedPersons);
-        return personMapper.domainToOutput(modifiedPersons);
+    public List<PersonOutputDto> modifyEntitiesByIds(List<Long> ids, List<PersonInputDto> inputEntities) {
+        return null;
     }
 
     @Override
-    public void deleteEntityById(int id) {
+    public void deleteEntityById(Long id) {
         personRepository.deleteById(id);
     }
 
     @Override
-    public void deleteEntitiesByIds(List<Integer> ids) {
-        personRepository.deleteAllById(ids);
+    public void deleteEntitiesByIds(List<Long> ids) {
+
     }
 
+    @Override
+    public void deleteAllEntities() {
+        personRepository.deleteAll();
+    }
 }

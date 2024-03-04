@@ -1,6 +1,6 @@
 /**
  * @author Albert Lozano Blasco
- * @version 1.0
+ * @version 11.0
  */
 
 package com.bosonit.block7crudvalidation.domain;
@@ -14,13 +14,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.Date;
 
+/**
+ * Person class. Defines a person.
+ */
 @Entity
 @Table(name = "Person")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Person {
-    //Attributes.
+    // Attributes
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long personId;

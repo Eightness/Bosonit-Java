@@ -1,3 +1,8 @@
+/**
+ * @author Albert Lozano Blasco
+ * @version 11.0
+ */
+
 package com.bosonit.block7crudvalidation.controller;
 
 import com.bosonit.block7crudvalidation.application.services.GenericService;
@@ -11,89 +16,59 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Class PersonController. RestController to manage all HTTP methods for a Person.
+ * PersonController class. RestController to manage all HTTP methods for a Person.
  */
 @RestController
 @RequestMapping("/person")
 public class PersonController {
-    //Attributes.
+    // Attributes
     @Autowired
-    private GenericService<PersonInputDto, PersonOutputDto> personService;
+    private GenericService<PersonInputDto, PersonOutputDto, Long> personService;
 
-    //Methods.
-
-    //Get methods.
-    @GetMapping("/getAll")
-    public ResponseEntity<List<PersonOutputDto>> getAllPersons() {
-        List<PersonOutputDto> persons = personService.getAllEntities(0, 10);
-        return new ResponseEntity<>(persons, HttpStatus.OK);
-    }
-
-    @GetMapping("/getPersonById")
-    public ResponseEntity<PersonOutputDto> getPersonById(@RequestParam int id) {
-        PersonOutputDto person = personService.getEntityById(id);
-        return new ResponseEntity<>(person, HttpStatus.OK);
-    }
-
-    @GetMapping("/getPersonByUser")
-    public ResponseEntity<PersonOutputDto> getPersonByUser(@RequestParam String user) {
-        List<PersonOutputDto> persons = personService.getEntitiesByName(user);
-        if (!persons.isEmpty()) {
-            return new ResponseEntity<>(persons.get(0), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    //Post methods.
-    @PostMapping("/postPerson")
+    // CRUD Methods
+    // Create methods
+    @PostMapping
     public ResponseEntity<PersonOutputDto> postPerson(@RequestBody PersonInputDto personInputDto) {
         PersonOutputDto createdPerson = personService.addEntity(personInputDto);
         return new ResponseEntity<>(createdPerson, HttpStatus.CREATED);
     }
 
-    @PostMapping("/postPersons")
-    public ResponseEntity<List<PersonOutputDto>> postPersons(@RequestBody List<PersonInputDto> personInputDtoList) {
-        List<PersonOutputDto> createdPersons = personService.addEntities(personInputDtoList);
-        return new ResponseEntity<>(createdPersons, HttpStatus.CREATED);
+    // Read methods
+    @GetMapping
+    public ResponseEntity<List<PersonOutputDto>> getAllPersons() {
+        List<PersonOutputDto> persons = personService.getAllEntities(0, 10);
+        return new ResponseEntity<>(persons, HttpStatus.OK);
     }
 
-    //Put methods.
-    @PutMapping("/putPersonById")
-    public ResponseEntity<PersonOutputDto> putPersonById(@RequestParam int id, @RequestBody PersonInputDto personInputDto) {
+    @GetMapping("/{id}")
+    public ResponseEntity<PersonOutputDto> getPersonById(@RequestParam long id) {
+        PersonOutputDto person = personService.getEntityById(id);
+        return new ResponseEntity<>(person, HttpStatus.OK);
+    }
+
+    // Update methods
+    @PutMapping("/{id}")
+    public ResponseEntity<PersonOutputDto> putPersonById(@RequestParam long id, @RequestBody PersonInputDto personInputDto) {
         PersonOutputDto updatedPerson = personService.updateEntityById(id, personInputDto);
         return new ResponseEntity<>(updatedPerson, HttpStatus.OK);
     }
 
-    @PutMapping("/putPersonsByIds")
-    public ResponseEntity<List<PersonOutputDto>> putPersonsByIds(@RequestBody List<Integer> ids) {
-        List<PersonOutputDto> updatedPersons = personService.updateEntitiesByIds(ids, null);
-        return new ResponseEntity<>(updatedPersons, HttpStatus.OK);
-    }
-
-    //Patch methods.
-    @PatchMapping("/patchPersonById")
-    public ResponseEntity<PersonOutputDto> patchPersonById(@RequestParam int id, @RequestBody PersonInputDto personInputDto) {
+    @PatchMapping("/{id}")
+    public ResponseEntity<PersonOutputDto> patchPersonById(@RequestParam long id, @RequestBody PersonInputDto personInputDto) {
         PersonOutputDto modifiedPerson = personService.modifyEntityById(id, personInputDto);
         return new ResponseEntity<>(modifiedPerson, HttpStatus.OK);
     }
 
-    @PatchMapping("/patchPersonsByIds")
-    public ResponseEntity<List<PersonOutputDto>> patchPersonsByIds(@RequestBody List<Integer> ids) {
-        List<PersonOutputDto> modifiedPersons = personService.modifyEntitiesByIds(ids, null);
-        return new ResponseEntity<>(modifiedPersons, HttpStatus.OK);
-    }
-
-    //Delete methods.
-    @DeleteMapping("/deletePersonById")
-    public ResponseEntity<Void> deletePersonById(@RequestParam int id) {
-        personService.deleteEntityById(id);
+    // Delete methods
+    @DeleteMapping
+    public ResponseEntity<Void> deleteAllPersons() {
+        personService.deleteAllEntities();
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("/deletePersonsByIds")
-    public ResponseEntity<Void> deletePersonsByIds(@RequestBody List<Integer> ids) {
-        personService.deleteEntitiesByIds(ids);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePersonById(@RequestParam long id) {
+        personService.deleteEntityById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

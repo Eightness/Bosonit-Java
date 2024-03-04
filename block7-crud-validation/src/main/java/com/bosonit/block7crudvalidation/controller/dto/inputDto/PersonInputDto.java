@@ -1,6 +1,6 @@
 /**
  * @author Albert Lozano Blasco
- * @version 1.0
+ * @version 11.0
  */
 
 package com.bosonit.block7crudvalidation.controller.dto.inputDto;
@@ -14,33 +14,44 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+/**
+ * PersonInputDto class. Contains all Person's attributes obtainable by user's input.
+ */
 @Data
 @NoArgsConstructor
 public class PersonInputDto {
-    //Attributes.
+    // Attributes
     @NotNull
     @Max(10)
     @Min(6)
     private String user;
+
     @NotNull
     private String password;
+
     @NotNull
     private String name;
+
     private String surname;
+
     @NotNull
     private String companyEmail;
+
     @NotNull
     private String personalEmail;
+
     @NotNull
     private String city;
+
     @NotNull
     private boolean active;
+
     @NotNull
     private Date createdDate;
     private String imageUrl;
     private Date terminationDate;
 
-    //Custom constructor with @Valid.
+    // Custom constructor with validations
     public PersonInputDto(
         @Valid String user,
         @Valid String password,

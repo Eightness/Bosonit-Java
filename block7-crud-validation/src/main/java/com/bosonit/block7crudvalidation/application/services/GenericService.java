@@ -1,27 +1,38 @@
+/**
+ * @author Albert Lozano Blasco
+ * @version 11.0
+ */
+
 package com.bosonit.block7crudvalidation.application.services;
 
 import java.util.List;
 
 /**
- * Interface GenericService. This interface contains methods that define most business' logic.
+ * GenericService interface. Contains methods that defines most business' logic.
+ * @param <InputDTO> Input class
+ * @param <OutputDTO> Output class
+ * @param <PK> Primary key
  */
-public interface GenericService<E1, E2> {
-    //REMEMBER: Service layer gets and returns DTOs, not Business's instances (domain).
-    //Being E1 -> Input Class and E2 -> Output Class
-    //Get methods.
-    E2 getEntityById(int id);
-    List<E2> getEntitiesByName(String name);
-    List<E2> getAllEntities(int pageNumber, int pageSize);
-    //Post methods.
-    E2 addEntity(E1 inputEntity);
-    List<E2> addEntities(List<E1> inputEntities);
-    //Put methods.
-    E2 updateEntityById(int id, E1 inputEntity);
-    List<E2> updateEntitiesByIds(List<Integer> ids, List<E1> inputEntities);
-    //Patch methods.
-    E2 modifyEntityById(int id, E1 inputEntity);
-    List<E2> modifyEntitiesByIds(List<Integer> ids, List<E1> inputEntities);
-    //Delete methods.
-    void deleteEntityById(int id);
-    void deleteEntitiesByIds(List<Integer> ids);
+public interface GenericService<InputDTO, OutputDTO, PK> {
+    // Get methods
+    OutputDTO getEntityById(PK id);
+    List<OutputDTO> getEntitiesByIds(List<PK> ids);
+    List<OutputDTO> getAllEntities(int pageNumber, int pageSize);
+
+    // Post methods
+    OutputDTO addEntity(InputDTO inputEntity);
+    List<OutputDTO> addEntities(List<InputDTO> inputEntities);
+
+    // Put methods
+    OutputDTO updateEntityById(PK id, InputDTO inputEntity);
+    List<OutputDTO> updateEntitiesByIds(List<PK> ids, List<InputDTO> inputEntities);
+
+    // Patch methods
+    OutputDTO modifyEntityById(PK id, InputDTO inputEntity);
+    List<OutputDTO> modifyEntitiesByIds(List<PK> ids, List<InputDTO> inputEntities);
+
+    // Delete methods
+    void deleteEntityById(PK id);
+    void deleteEntitiesByIds(List<PK> ids);
+    void deleteAllEntities();
 }

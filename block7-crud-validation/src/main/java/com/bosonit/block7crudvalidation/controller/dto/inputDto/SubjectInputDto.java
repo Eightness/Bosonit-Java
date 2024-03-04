@@ -1,3 +1,8 @@
+/**
+ * @author Albert Lozano Blasco
+ * @version 11.0
+ */
+
 package com.bosonit.block7crudvalidation.controller.dto.inputDto;
 
 import com.bosonit.block7crudvalidation.domain.Student;
@@ -9,22 +14,30 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * SubjectInputDto class. Contains all Subject's attributes obtainable by user's input.
+ */
 @Data
 @NoArgsConstructor
 public class SubjectInputDto {
-    //Attribues.
+    // Attributes
     @NotNull
     private String subjectId;
+
     @NotNull
     private List<Student> students;
+
     @NotNull
     private String subject;
+
     private String comments;
+
     @NotNull
     private Date initialDate;
+
     private Date finishDate;
 
-    //Custom constructor.
+    // Custom constructor with validations
     public SubjectInputDto(
         @Valid String subjectId,
         @Valid List<Student> students,

@@ -1,3 +1,8 @@
+/**
+ * @author Albert Lozano Blasco
+ * @version 11.0
+ */
+
 package com.bosonit.block7crudvalidation.controller.dto.inputDto;
 
 import com.bosonit.block7crudvalidation.domain.Person;
@@ -10,23 +15,31 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * StudentInputDto class. Contains all Student's attributes obtainable by user's input.
+ */
 @Data
 @NoArgsConstructor
 public class StudentInputDto {
-    //Attributes.
+    // Attributes
     @NotNull
     private String studentId;
+
     @NotNull
     private Person person;
+
     @NotNull
     private int numHoursPerWeek;
+
     private String comments;
+
     @NotNull
     private Professor professor;
+
     @NotNull
     private List<Subject> subjects;
 
-    //Custom constructor.
+    // Custom constructor with validations
     public StudentInputDto(
             @Valid String studentId,
             @Valid Person person,

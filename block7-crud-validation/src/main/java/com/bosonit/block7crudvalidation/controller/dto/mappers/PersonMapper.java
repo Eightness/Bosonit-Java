@@ -1,6 +1,6 @@
 /**
  * @author Albert Lozano Blasco
- * @version 1.0
+ * @version 11.0
  */
 
 package com.bosonit.block7crudvalidation.controller.dto.mappers;
@@ -11,10 +11,10 @@ import com.bosonit.block7crudvalidation.domain.Person;
 import org.mapstruct.Mapper;
 
 /**
- * Interface PersonMapper. It's a mapper from MapStruct. Automatically maps DTOs.
+ * PersonMapper interface. It's a mapper from MapStruct. Automatically maps DTOs. Extends from GenericDTOMapper, previously implemented.
  */
 @Mapper(componentModel = "spring")
 public interface PersonMapper extends GenericDTOMapper<PersonInputDto, Person, PersonOutputDto> {
-    //Logic: PersonInputDto -> Person -> PersonOutputDto
-    //We'll work with this mapper in PersonServiceImpl.
+    // We'll work with this mapper in PersonServiceImpl
+    // We could add some custom methods in here (related to mapping logic)
 }

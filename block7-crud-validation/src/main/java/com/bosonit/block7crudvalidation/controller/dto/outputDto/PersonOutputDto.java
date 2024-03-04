@@ -1,6 +1,6 @@
 /**
  * @author Albert Lozano Blasco
- * @version 1.0
+ * @version 11.0
  */
 
 package com.bosonit.block7crudvalidation.controller.dto.outputDto;
@@ -11,11 +11,14 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+/**
+ * PersonOutputDto class. Contains all Person's attributes to display.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class PersonOutputDto {
-    //Attributes.
+    // Attributes
     private int personId;
     private String user;
     private String name;
