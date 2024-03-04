@@ -6,9 +6,12 @@
 package com.bosonit.block7crudvalidation.controller.dto.outputDto;
 
 import com.bosonit.block7crudvalidation.domain.Person;
+import com.bosonit.block7crudvalidation.domain.Student;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 /**
  * ProfessorOutputDto class. Contains all Professor's attributes to display.
@@ -18,8 +21,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProfessorOutputDto {
     // Attributes
-    private String professorId;
+    private long professorId;
     private Person person;
     private String comments;
     private String branch;
+    private List<Student> students;
 }

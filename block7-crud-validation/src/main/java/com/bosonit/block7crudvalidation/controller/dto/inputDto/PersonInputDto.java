@@ -5,10 +5,11 @@
 
 package com.bosonit.block7crudvalidation.controller.dto.inputDto;
 
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,12 +20,12 @@ import java.util.Date;
  */
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class PersonInputDto {
     // Attributes
+    @Size(min = 6, max = 10)
     @NotNull
-    @Max(10)
-    @Min(6)
-    private String user;
+    private String login;
 
     @NotNull
     private String password;
@@ -44,37 +45,12 @@ public class PersonInputDto {
     private String city;
 
     @NotNull
-    private boolean active;
+    private Boolean active;
 
     @NotNull
     private Date createdDate;
-    private String imageUrl;
-    private Date terminationDate;
 
-    // Custom constructor with validations
-    public PersonInputDto(
-        @Valid String user,
-        @Valid String password,
-        @Valid String name,
-        String surname,
-        @Valid String companyEmail,
-        @Valid String personalEmail,
-        @Valid String city,
-        @Valid boolean active,
-        @Valid Date createdDate,
-        String imageUrl,
-        Date terminationDate
-    ) {
-        this.user = user;
-        this.password = password;
-        this.name = name;
-        this.surname = surname;
-        this.companyEmail = companyEmail;
-        this.personalEmail = personalEmail;
-        this.city = city;
-        this.active = active;
-        this.createdDate = createdDate;
-        this.imageUrl = imageUrl;
-        this.terminationDate = terminationDate;
-    }
+    private String imageUrl;
+
+    private Date terminationDate;
 }

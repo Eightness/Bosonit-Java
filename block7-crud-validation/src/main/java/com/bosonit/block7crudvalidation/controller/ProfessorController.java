@@ -27,46 +27,46 @@ public class ProfessorController {
 
     // CRUD Methods
     // Create methods
-    @PostMapping
+    @PostMapping("/post")
     public ResponseEntity<ProfessorOutputDto> postProfessor(@RequestBody ProfessorInputDto professorInputDto) {
         ProfessorOutputDto createdProfessor = professorService.addEntity(professorInputDto);
         return new ResponseEntity<>(createdProfessor, HttpStatus.CREATED);
     }
 
     // Read methods
-    @GetMapping
+    @GetMapping("/get/all")
     public ResponseEntity<List<ProfessorOutputDto>> getAllProfessors() {
         List<ProfessorOutputDto> professors = professorService.getAllEntities(0, 10);
         return new ResponseEntity<>(professors, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get")
     public ResponseEntity<ProfessorOutputDto> getProfessorById(@RequestParam long id) {
         ProfessorOutputDto professor = professorService.getEntityById(id);
         return new ResponseEntity<>(professor, HttpStatus.OK);
     }
 
     // Update methods
-    @PutMapping("/{id}")
+    @PutMapping("/put")
     public ResponseEntity<ProfessorOutputDto> putProfessorById(@RequestParam long id, @RequestBody ProfessorInputDto professorInputDto) {
         ProfessorOutputDto updatedProfessor = professorService.updateEntityById(id, professorInputDto);
         return new ResponseEntity<>(updatedProfessor, HttpStatus.OK);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/patch")
     public ResponseEntity<ProfessorOutputDto> patchProfessorById(@RequestParam long id, @RequestBody ProfessorInputDto professorInputDto) {
         ProfessorOutputDto modifiedProfessor = professorService.modifyEntityById(id, professorInputDto);
         return new ResponseEntity<>(modifiedProfessor, HttpStatus.OK);
     }
 
     // Delete methods
-    @DeleteMapping
+    @DeleteMapping("/delete/all")
     public ResponseEntity<Void> deleteAllProfessors() {
         professorService.deleteAllEntities();
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete")
     public ResponseEntity<Void> deleteProfessorById(@RequestParam long id) {
         professorService.deleteEntityById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

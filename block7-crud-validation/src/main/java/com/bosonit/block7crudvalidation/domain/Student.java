@@ -23,7 +23,7 @@ import java.util.List;
 public class Student {
     // Attributes
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long studentId;
 
     @OneToOne

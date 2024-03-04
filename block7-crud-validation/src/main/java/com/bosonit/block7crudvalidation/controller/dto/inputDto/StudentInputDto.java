@@ -23,10 +23,7 @@ import java.util.List;
 public class StudentInputDto {
     // Attributes
     @NotNull
-    private String studentId;
-
-    @NotNull
-    private Person person;
+    private long personId;
 
     @NotNull
     private int numHoursPerWeek;
@@ -34,25 +31,5 @@ public class StudentInputDto {
     private String comments;
 
     @NotNull
-    private Professor professor;
-
-    @NotNull
-    private List<Subject> subjects;
-
-    // Custom constructor with validations
-    public StudentInputDto(
-            @Valid String studentId,
-            @Valid Person person,
-            @Valid int numHoursPerWeek,
-            String comments,
-            @Valid Professor professor,
-            @Valid List<Subject> subjects
-    ) {
-        this.studentId = studentId;
-        this.person = person;
-        this.numHoursPerWeek = numHoursPerWeek;
-        this.comments = comments;
-        this.professor = professor;
-        this.subjects = subjects;
-    }
+    private long professorId;
 }

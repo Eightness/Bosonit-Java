@@ -6,9 +6,11 @@
 package com.bosonit.block7crudvalidation.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,9 +30,8 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long personId;
 
+    @Size(min = 6, max = 10)
     @NotNull
-    @Max(10)
-    @Min(6)
     private String login;
 
     @NotNull
@@ -62,4 +63,3 @@ public class Person {
     @Temporal(TemporalType.TIMESTAMP)
     private Date terminationDate;
 }
-

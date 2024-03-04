@@ -22,7 +22,7 @@ import java.util.List;
 @NoArgsConstructor
 public class StudentOutputDto {
     // Attributes
-    private String studentId;
+    private long studentId;
     private Person person;
     private int numHoursPerWeek;
     private String comments;

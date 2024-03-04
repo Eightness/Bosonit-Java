@@ -27,46 +27,46 @@ public class PersonController {
 
     // CRUD Methods
     // Create methods
-    @PostMapping
+    @PostMapping("/post")
     public ResponseEntity<PersonOutputDto> postPerson(@RequestBody PersonInputDto personInputDto) {
         PersonOutputDto createdPerson = personService.addEntity(personInputDto);
         return new ResponseEntity<>(createdPerson, HttpStatus.CREATED);
     }
 
     // Read methods
-    @GetMapping
+    @GetMapping("/get/all")
     public ResponseEntity<List<PersonOutputDto>> getAllPersons() {
         List<PersonOutputDto> persons = personService.getAllEntities(0, 10);
         return new ResponseEntity<>(persons, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get")
     public ResponseEntity<PersonOutputDto> getPersonById(@RequestParam long id) {
         PersonOutputDto person = personService.getEntityById(id);
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
 
     // Update methods
-    @PutMapping("/{id}")
+    @PutMapping("/put")
     public ResponseEntity<PersonOutputDto> putPersonById(@RequestParam long id, @RequestBody PersonInputDto personInputDto) {
         PersonOutputDto updatedPerson = personService.updateEntityById(id, personInputDto);
         return new ResponseEntity<>(updatedPerson, HttpStatus.OK);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/patch")
     public ResponseEntity<PersonOutputDto> patchPersonById(@RequestParam long id, @RequestBody PersonInputDto personInputDto) {
         PersonOutputDto modifiedPerson = personService.modifyEntityById(id, personInputDto);
         return new ResponseEntity<>(modifiedPerson, HttpStatus.OK);
     }
 
     // Delete methods
-    @DeleteMapping
+    @DeleteMapping("/delete/all")
     public ResponseEntity<Void> deleteAllPersons() {
         personService.deleteAllEntities();
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete")
     public ResponseEntity<Void> deletePersonById(@RequestParam long id) {
         personService.deleteEntityById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

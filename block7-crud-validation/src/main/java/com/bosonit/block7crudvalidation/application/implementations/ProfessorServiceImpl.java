@@ -9,7 +9,9 @@ import com.bosonit.block7crudvalidation.application.services.GenericService;
 import com.bosonit.block7crudvalidation.controller.dto.inputDto.ProfessorInputDto;
 import com.bosonit.block7crudvalidation.controller.dto.mappers.ProfessorMapper;
 import com.bosonit.block7crudvalidation.controller.dto.outputDto.ProfessorOutputDto;
+import com.bosonit.block7crudvalidation.domain.Person;
 import com.bosonit.block7crudvalidation.domain.Professor;
+import com.bosonit.block7crudvalidation.respository.PersonRepository;
 import com.bosonit.block7crudvalidation.respository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,8 @@ public class ProfessorServiceImpl implements GenericService<ProfessorInputDto, P
     ProfessorRepository professorRepository;
     @Autowired
     ProfessorMapper professorMapper;
+    @Autowired
+    PersonRepository personRepository;
 
     // Methods
     @Override
@@ -47,7 +51,12 @@ public class ProfessorServiceImpl implements GenericService<ProfessorInputDto, P
 
     @Override
     public ProfessorOutputDto addEntity(ProfessorInputDto inputEntity) {
-        Professor professor = professorMapper.inputToDomain(inputEntity);
+        Professor professor = new Professor();
+        Person associatedPerson = personRepository.findById(inputEntity.getPersonId()).orElseThrow();
+        professor.setPerson(associatedPerson);
+        professor.setComments(inputEntity.getComment());
+        professor.setBranch(inputEntity.getBranch());
+
         professorRepository.save(professor);
         return professorMapper.domainToOutput(professor);
     }

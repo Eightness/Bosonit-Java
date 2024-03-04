@@ -25,7 +25,7 @@ import java.util.List;
 public class Subject {
     // Attributes
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long subjectId;
 
     @ManyToMany(fetch = FetchType.LAZY)

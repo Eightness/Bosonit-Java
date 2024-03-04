@@ -10,7 +10,9 @@ import com.bosonit.block7crudvalidation.controller.dto.inputDto.PersonInputDto;
 import com.bosonit.block7crudvalidation.controller.dto.mappers.PersonMapper;
 import com.bosonit.block7crudvalidation.controller.dto.outputDto.PersonOutputDto;
 import com.bosonit.block7crudvalidation.domain.Person;
+import com.bosonit.block7crudvalidation.exceptions.EntityNotFoundException;
 import com.bosonit.block7crudvalidation.respository.PersonRepository;
+import jakarta.persistence.EntityExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +32,7 @@ public class PersonServiceImpl implements GenericService<PersonInputDto, PersonO
     // Methods
     @Override
     public PersonOutputDto getEntityById(Long id) {
-        Person person = personRepository.findById(id).orElseThrow();
+        Person person = personRepository.findById(id).orElseThrow(EntityExistsException::new);
         return personMapper.domainToOutput(person);
     }
 
@@ -59,8 +61,21 @@ public class PersonServiceImpl implements GenericService<PersonInputDto, PersonO
 
     @Override
     public PersonOutputDto updateEntityById(Long id, PersonInputDto inputEntity) {
-        personRepository.findById(id).orElseThrow();
-        Person person = personMapper.inputToDomain(inputEntity);
+        Person person = personRepository.findById(id).orElseThrow();
+        Person updatedPerson = personMapper.inputToDomain(inputEntity);
+
+        person.setLogin(updatedPerson.getLogin());
+        person.setPassword(updatedPerson.getPassword());
+        person.setName(updatedPerson.getName());
+        person.setSurname(updatedPerson.getSurname());
+        person.setCompanyEmail(updatedPerson.getCompanyEmail());
+        person.setPersonalEmail(updatedPerson.getPersonalEmail());
+        person.setCity(updatedPerson.getCity());
+        person.setActive(updatedPerson.getActive());
+        person.setCreatedDate(updatedPerson.getCreatedDate());
+        person.setImageUrl(updatedPerson.getImageUrl());
+        person.setTerminationDate(updatedPerson.getTerminationDate());
+
         personRepository.save(person);
         return personMapper.domainToOutput(person);
     }
@@ -72,8 +87,21 @@ public class PersonServiceImpl implements GenericService<PersonInputDto, PersonO
 
     @Override
     public PersonOutputDto modifyEntityById(Long id, PersonInputDto inputEntity) {
-        personRepository.findById(id).orElseThrow();
-        Person person = personMapper.inputToDomain(inputEntity);
+        Person person = personRepository.findById(id).orElseThrow();
+        Person updatedPerson = personMapper.inputToDomain(inputEntity);
+
+        person.setLogin(updatedPerson.getLogin());
+        person.setPassword(updatedPerson.getPassword());
+        person.setName(updatedPerson.getName());
+        person.setSurname(updatedPerson.getSurname());
+        person.setCompanyEmail(updatedPerson.getCompanyEmail());
+        person.setPersonalEmail(updatedPerson.getPersonalEmail());
+        person.setCity(updatedPerson.getCity());
+        person.setActive(updatedPerson.getActive());
+        person.setCreatedDate(updatedPerson.getCreatedDate());
+        person.setImageUrl(updatedPerson.getImageUrl());
+        person.setTerminationDate(updatedPerson.getTerminationDate());
+
         personRepository.save(person);
         return personMapper.domainToOutput(person);
     }

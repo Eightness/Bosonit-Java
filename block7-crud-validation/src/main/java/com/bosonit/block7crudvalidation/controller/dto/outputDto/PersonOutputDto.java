@@ -19,8 +19,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class PersonOutputDto {
     // Attributes
-    private int personId;
-    private String user;
+    private long personId;
+    private String login;
     private String name;
     private String surname;
     private String companyEmail;

@@ -27,46 +27,46 @@ public class SubjectController {
 
     // CRUD Methods
     // Create methods
-    @PostMapping
+    @PostMapping("/post")
     public ResponseEntity<SubjectOutputDto> postSubject(@RequestBody SubjectInputDto subjectInputDto) {
         SubjectOutputDto createdSubject = subjectService.addEntity(subjectInputDto);
         return new ResponseEntity<>(createdSubject, HttpStatus.CREATED);
     }
 
     // Read methods
-    @GetMapping
+    @GetMapping("/get/all")
     public ResponseEntity<List<SubjectOutputDto>> getAllSubjects() {
         List<SubjectOutputDto> subjects = subjectService.getAllEntities(0, 10);
         return new ResponseEntity<>(subjects, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get")
     public ResponseEntity<SubjectOutputDto> getSubjectById(@RequestParam long id) {
         SubjectOutputDto subject = subjectService.getEntityById(id);
         return new ResponseEntity<>(subject, HttpStatus.OK);
     }
 
     // Update methods
-    @PutMapping("/{id}")
+    @PutMapping("/put")
     public ResponseEntity<SubjectOutputDto> putSubjectById(@RequestParam long id, @RequestBody SubjectInputDto subjectInputDto) {
         SubjectOutputDto updatedSubject = subjectService.updateEntityById(id, subjectInputDto);
         return new ResponseEntity<>(updatedSubject, HttpStatus.OK);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/patch")
     public ResponseEntity<SubjectOutputDto> patchSubjectById(@RequestParam long id, @RequestBody SubjectInputDto subjectInputDto) {
         SubjectOutputDto modifiedSubject = subjectService.modifyEntityById(id, subjectInputDto);
         return new ResponseEntity<>(modifiedSubject, HttpStatus.OK);
     }
 
     // Delete methods
-    @DeleteMapping
-    public ResponseEntity<Void> deleteSubjectsByIds() {
+    @DeleteMapping("/delete/all")
+    public ResponseEntity<Void> deleteAllSubjects() {
         subjectService.deleteAllEntities();
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete")
     public ResponseEntity<Void> deleteSubjectById(@RequestParam long id) {
         subjectService.deleteEntityById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
