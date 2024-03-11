@@ -1,14 +1,11 @@
 /**
  * @author Albert Lozano Blasco
- * @version 11.0
+ * @version 12.0
  */
 
 package com.bosonit.block7crudvalidation.domain;
 
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;

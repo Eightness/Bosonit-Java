@@ -8,7 +8,7 @@ package com.bosonit.block7crudvalidation.application.services;
 import java.util.List;
 
 /**
- * GenericService interface. Contains methods that defines most business' logic.
+ * GenericService interface. Contains methods that defines most business' logic in this app.
  * @param <InputDTO> Input class
  * @param <OutputDTO> Output class
  * @param <PK> Primary key

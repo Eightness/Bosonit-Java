@@ -1,13 +1,15 @@
 /**
  * @author Albert Lozano Blasco
- * @version 11.0
+ * @version 12.0
  */
 
 package com.bosonit.block7crudvalidation.respository;
 
+import com.bosonit.block7crudvalidation.controller.dto.outputDto.PersonOutputDto;
 import com.bosonit.block7crudvalidation.domain.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -22,5 +24,5 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
      */
 
     // Custom methods
-    List<Person> findByName(String name);
+    public List<PersonOutputDto> getCustomPersons(HashMap<String, Object> conditions);
 }

@@ -1,11 +1,11 @@
 /**
  * @author Albert Lozano Blasco
- * @version 11.0
+ * @version 12.0
  */
 
 package com.bosonit.block7crudvalidation.controller;
 
-import com.bosonit.block7crudvalidation.application.services.GenericService;
+import com.bosonit.block7crudvalidation.application.implementations.PersonServiceImpl;
 import com.bosonit.block7crudvalidation.controller.dto.inputDto.PersonInputDto;
 import com.bosonit.block7crudvalidation.controller.dto.outputDto.PersonOutputDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -23,7 +25,7 @@ import java.util.List;
 public class PersonController {
     // Attributes
     @Autowired
-    private GenericService<PersonInputDto, PersonOutputDto, Long> personService;
+    private PersonServiceImpl personService;
 
     // CRUD Methods
     // Create methods
@@ -44,6 +46,46 @@ public class PersonController {
     public ResponseEntity<PersonOutputDto> getPersonById(@RequestParam long id) {
         PersonOutputDto person = personService.getEntityById(id);
         return new ResponseEntity<>(person, HttpStatus.OK);
+    }
+
+    // Criteria API methods (using CriteriaBuilder)
+    @GetMapping("/get/custom")
+    public ResponseEntity<List<PersonOutputDto>> getCustomPersons (
+            @RequestParam(required = false) String login,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String surname,
+            @RequestParam(required = false) Date date,
+            @RequestParam(required = false) boolean newer,
+            @RequestParam(required = false) boolean orderedBy,
+            @RequestParam int pageNumber,
+            @RequestParam(required = false) int pageSize
+    ) {
+        HashMap<String, Object> conditions = new HashMap<>();
+
+        // Adding parameters info to our map "conditions"
+        // Plus checking if the parameters are empty or not:
+        if (login != null) {
+            conditions.put("login", login);
+        }
+        if (name != null) {
+            conditions.put("name", name);
+        }
+        if (surname != null) {
+            conditions.put("surname", name);
+        }
+        if (date != null) {
+            conditions.put("createdDate", date);
+        }
+        if (pageSize == 0) {
+            conditions.put("pageSize", 10);
+        } else {
+            conditions.put("pageSize", pageSize);
+        }
+        conditions.put("newer", newer);
+        conditions.put("orderedBy", orderedBy);
+
+        List<PersonOutputDto> results = personService.getCustomPersons(conditions);
+        return new ResponseEntity<>(results, HttpStatus.OK);
     }
 
     // Update methods

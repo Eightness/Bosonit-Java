@@ -1,6 +1,6 @@
 /**
  * @author Albert Lozano Blasco
- * @version 11.0
+ * @version 12.0
  */
 
 package com.bosonit.block7crudvalidation.application.implementations;
@@ -10,12 +10,12 @@ import com.bosonit.block7crudvalidation.controller.dto.inputDto.PersonInputDto;
 import com.bosonit.block7crudvalidation.controller.dto.mappers.PersonMapper;
 import com.bosonit.block7crudvalidation.controller.dto.outputDto.PersonOutputDto;
 import com.bosonit.block7crudvalidation.domain.Person;
-import com.bosonit.block7crudvalidation.exceptions.EntityNotFoundException;
 import com.bosonit.block7crudvalidation.respository.PersonRepository;
 import jakarta.persistence.EntityExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -124,5 +124,14 @@ public class PersonServiceImpl implements GenericService<PersonInputDto, PersonO
     @Override
     public void deleteAllEntities() {
         personRepository.deleteAll();
+    }
+
+    // Criteria API methods (using CriteriaBuilder)
+    /**
+     * getCustomPerson method. Allows listing those persons that matches user's conditions using CriteriaBuilder.
+     * @param conditions (HashMap<String, Object>) Conditions set by the user.
+     */
+    public List<PersonOutputDto> getCustomPersons(HashMap<String, Object> conditions) {
+        return personRepository.getCustomPersons(conditions);
     }
 }
