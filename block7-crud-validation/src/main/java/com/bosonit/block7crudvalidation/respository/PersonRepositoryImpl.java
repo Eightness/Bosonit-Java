@@ -22,8 +22,8 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * PersonRepositoryImpl class. If we end a class' name by "Impl", Spring automatically will implement its methods
- * within the class with the same name (without Impl).
+ * PersonRepositoryImpl class. If we end a class name by "Impl", Spring automatically will implement its methods
+ * within the class with the same name (without Impl). Example -> PersonRepository and PersonRepositoryImpl.
  * We'll use this class to implement the custom method "getData" so we can call it from "PersonRepository" directly.
  */
 public class PersonRepositoryImpl {
