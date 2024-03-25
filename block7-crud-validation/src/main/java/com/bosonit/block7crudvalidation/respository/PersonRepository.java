@@ -1,6 +1,6 @@
 /**
  * @author Albert Lozano Blasco
- * @version 12.0
+ * @version 13.0
  */
 
 package com.bosonit.block7crudvalidation.respository;
@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * PersonRepository interface . Extends from JpaRepository and contains all methods related to Person's persistence.
@@ -25,4 +26,5 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
     // Custom methods
     public List<PersonOutputDto> getCustomPersons(HashMap<String, Object> conditions);
+    public Optional<PersonOutputDto> findByLogin(String login);
 }

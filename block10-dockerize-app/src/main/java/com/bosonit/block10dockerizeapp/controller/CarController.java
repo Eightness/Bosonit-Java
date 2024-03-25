@@ -58,4 +58,10 @@ public class CarController {
         carService.deleteEntityById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<Void> deleteAllCars() {
+        carService.deleteAllEntities();
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

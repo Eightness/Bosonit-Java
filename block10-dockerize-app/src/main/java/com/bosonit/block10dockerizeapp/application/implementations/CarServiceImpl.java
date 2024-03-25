@@ -9,6 +9,7 @@ import com.bosonit.block10dockerizeapp.application.services.IGenericService;
 import com.bosonit.block10dockerizeapp.controller.dto.inputDto.CarInputDTO;
 import com.bosonit.block10dockerizeapp.controller.dto.mappers.CarMapper;
 import com.bosonit.block10dockerizeapp.controller.dto.outputDto.CarOutputDTO;
+import com.bosonit.block10dockerizeapp.domain.Car;
 import com.bosonit.block10dockerizeapp.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,9 @@ public class CarServiceImpl implements IGenericService<CarInputDTO, CarOutputDTO
     // Create methods
     @Override
     public CarOutputDTO addEntity(CarInputDTO inputEntity) {
-        return null;
+        Car car = carMapper.inputToDomain(inputEntity);
+        car = carRepository.save(car);
+        return carMapper.domainToOutput(car);
     }
 
     @Override
@@ -41,7 +44,8 @@ public class CarServiceImpl implements IGenericService<CarInputDTO, CarOutputDTO
     // Read Methods
     @Override
     public CarOutputDTO getEntityById(Long id) {
-        return null;
+        Car car = carRepository.findById(id).orElseThrow();
+        return carMapper.domainToOutput(car);
     }
 
     @Override
@@ -57,7 +61,10 @@ public class CarServiceImpl implements IGenericService<CarInputDTO, CarOutputDTO
     // Update methods
     @Override
     public CarOutputDTO updateEntityById(Long id, CarInputDTO inputEntity) {
-        return null;
+        carRepository.findById(id).orElseThrow();
+        Car car = carMapper.inputToDomain(inputEntity);
+        car = carRepository.save(car);
+        return carMapper.domainToOutput(car);
     }
 
     @Override
@@ -67,7 +74,10 @@ public class CarServiceImpl implements IGenericService<CarInputDTO, CarOutputDTO
 
     @Override
     public CarOutputDTO modifyEntityById(Long id, CarInputDTO inputEntity) {
-        return null;
+        carRepository.findById(id).orElseThrow();
+        Car car = carMapper.inputToDomain(inputEntity);
+        car = carRepository.save(car);
+        return carMapper.domainToOutput(car);
     }
 
     @Override
@@ -78,7 +88,7 @@ public class CarServiceImpl implements IGenericService<CarInputDTO, CarOutputDTO
     // Delete methods
     @Override
     public void deleteEntityById(Long id) {
-
+        carRepository.deleteById(id);
     }
 
     @Override
@@ -88,6 +98,6 @@ public class CarServiceImpl implements IGenericService<CarInputDTO, CarOutputDTO
 
     @Override
     public void deleteAllEntities() {
-
+        carRepository.deleteAll();
     }
 }

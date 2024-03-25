@@ -134,4 +134,7 @@ public class PersonServiceImpl implements GenericService<PersonInputDto, PersonO
     public List<PersonOutputDto> getCustomPersons(HashMap<String, Object> conditions) {
         return personRepository.getCustomPersons(conditions);
     }
+
+    // Security methods (using Spring Security)
+
 }

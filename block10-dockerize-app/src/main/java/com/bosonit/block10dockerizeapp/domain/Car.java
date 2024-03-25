@@ -19,7 +19,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class Car {
     // Enum
-    private enum Color {
+    public enum Color {
         BLACK,
         GREY,
         WHITE,

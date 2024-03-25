@@ -22,5 +22,4 @@ public class CustomError {
     private Date timestamp;
     private int httpCode;
     private String message;
-
 }
